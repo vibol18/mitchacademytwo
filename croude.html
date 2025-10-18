@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Norton University — Admin CRUD</title>
+  <style>
+
+    :root{
+      --primary:#004aad;
+      --accent:#ffde59;
+      --muted:#f1f5f9;
+      --card:#ffffff;
+      --danger:#e63946;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(180deg,#f7fbff 0%, #fbfcff 100%);
+      color:#1f2937;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    header{
+      position:fixed; left:0; right:0; top:0;
+      height:64px;
+      background:var(--primary);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:0 20px;
+      box-shadow:0 3px 8px rgba(2,6,23,0.12);
+      z-index:1000;
+    }
+    header h1{font-size:18px; margin:0; font-weight:600}
+    main{padding:90px 20px 40px; max-width:1100px; margin:0 auto}
+
+    .tabs{
+      display:flex;
+      gap:10px;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+    }
+    .tab-btn{
+      background:transparent;
+      border:1px solid rgba(0,0,0,0.06);
+      padding:10px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      color:var(--primary);
+      transition:all .18s;
+    }
+    .tab-btn.active{
+      background:var(--primary);
+      color:#fff;
+      box-shadow: 0 6px 18px rgba(0,74,173,0.12);
+    }
+
+
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(15,23,42,0.04);
+      padding:18px;
+      margin-bottom:24px;
+    }
+
+
+    .controls{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      margin-bottom:12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      background:var(--primary);
+      color:#fff;
+      padding:10px 12px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--primary);
+      border:1px solid rgba(0,0,0,0.06);
+    }
+    .search{
+      padding:8px 10px;
+      border-radius:8px;
+      border:1px solid #e6edf6;
+      min-width:180px;
+    }
+
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+    }
+    th, td{
+      padding:10px 12px;
+      text-align:left;
+      border-bottom:1px solid #f1f5f9;
+    }
+    th{color:var(--primary); font-weight:700; text-transform:uppercase; font-size:12px}
+    td .actions{display:flex; gap:8px}
+    .pill{
+      display:inline-block;
+      background:#f1f5f9;
+      color:#0f172a;
+      padding:6px 8px;
+      border-radius:999px;
+      font-size:13px;
+      border:1px solid rgba(0,0,0,0.03);
+    }
+
+    .modal{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background:rgba(2,6,23,0.45);
+      z-index:2000;
+    }
+    .modal.show{display:flex}
+    .modal-card{
+      width:100%; max-width:720px;
+      background:#fff; border-radius:10px;
+      padding:18px;
+      box-shadow:0 12px 40px rgba(2,6,23,0.28);
+    }
+    .form-grid{
+      display:grid; gap:12px;
+      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    }
+    label{font-size:13px; color:#334155; font-weight:600}
+    input[type="text"], input[type="email"], select, textarea{
+      padding:10px; border-radius:8px; border:1px solid #e6edf6; font-size:14px; width:100%;
+    }
+    .form-actions{display:flex; gap:8px; justify-content:flex-end; margin-top:12px}
+
+
+    .btn-sm{padding:6px 8px; font-size:13px; border-radius:8px}
+    .btn-edit{background:#f59e0b; color:#fff}
+    .btn-delete{background:var(--danger); color:#fff}
+    .btn-view{background:#10b981; color:#fff}
+
+  
+    @media (max-width:720px){
+      header{padding:0 12px}
+      .controls{flex-direction:column; align-items:stretch}
+      th, td{font-size:13px}
+    }
+
+
+    .fade-in {opacity:0; transform:translateY(24px); transition:all .6s ease-out}
+    .fade-in.visible {opacity:1; transform:translateY(0)}
+
+    .muted{color:#64748b; font-size:13px}
+    .center{display:flex; align-items:center; gap:8px}
+    .empty{padding:24px; text-align:center; color:#64748b}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mitch Academy — Admin</h1>
+  </header>
+
+  <main>
+
+    <div class="tabs card fade-in" id="tabs">
+      <button class="tab-btn active" data-tab="teachers">Teachers</button>
+      <button class="tab-btn" data-tab="students">Students</button>
+      <button class="tab-btn" data-tab="courses">Courses</button>
+      <button class="tab-btn" data-tab="Attentdent">Attentdent</button>
+    </div>
+
+   
+    <section id="teachers" class="card fade-in">
+      <div class="controls">
+        <div class="center">
+          <button class="btn" id="addTeacherBtn">+ Add Teacher</button>
+          <input class="search" id="searchTeacher" placeholder="Search teacher name or email">
+        </div>
+        <div class="muted">Teachers: <span id="countTeachers">0</span></div>
+      </div>
+
+      <div id="teachersTableWrap"></div>
+    </section>
+
+
+    <section id="students" class="card fade-in" style="display:none">
+      <div class="controls">
+        <div class="center">
+          <button class="btn" id="addStudentBtn">+ Add Student</button>
+          <input class="search" id="searchStudent" placeholder="Search student name or email">
+        </div>
+        <div class="muted">Students: <span id="countStudents">0</span></div>
+      </div>
+
+      <div id="studentsTableWrap"></div>
+    </section>
+
+
+    <section id="courses" class="card fade-in" style="display:none">
+      <div class="controls">
+        <div class="center">
+          <button class="btn" id="addCourseBtn">+ Add Course</button>
+          <input class="search" id="searchCourse" placeholder="Search course title">
+        </div>
+        <div class="muted">Courses: <span id="countCourses">0</span></div>
+      </div>
+
+      <div id="coursesTableWrap"></div>
+    </section>
+
+  </main>
+
+
+  <div class="modal" id="modal">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <h3 id="modalTitle">Form</h3>
+      <div id="modalContent"></div>
+      <div class="form-actions" id="modalActions">
+        <button class="btn btn-sm ghost" id="cancelBtn">Cancel</button>
+        <button class="btn btn-sm" id="saveBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+  
+    const uid = () => 'id_' + Math.random().toString(36).slice(2,9);
+
+    function seedData() {
+      if(!localStorage.getItem('teachers')){
+        const t = [
+          {id:uid(), name:'Mr. Vibol', email:'vibol@nu.edu', subject:'English'},
+          {id:uid(), name:'Ms. Lisa', email:'lisa@nu.edu', subject:'IT'},
+        ];
+        localStorage.setItem('teachers', JSON.stringify(t));
+      }
+      if(!localStorage.getItem('students')){
+        const s = [
+          {id:uid(), name:'Sokha', email:'sokha@student.nu', grade:'12'},
+          {id:uid(), name:'Rith', email:'rith@student.nu', grade:'11'},
+        ];
+        localStorage.setItem('students', JSON.stringify(s));
+      }
+      if(!localStorage.getItem('courses')){
+        const t = JSON.parse(localStorage.getItem('teachers') || '[]');
+        const c = [
+          {id:uid(), title:'Web Development', code:'WD101', teacherId: t[1]?.id || null, students: []},
+          {id:uid(), title:'Basic English', code:'EN101', teacherId: t[0]?.id || null, students: []}
+        ];
+        localStorage.setItem('courses', JSON.stringify(c));
+      }
+    }
+
+    seedData();
+
+    const db = {
+      teachers: ()=> JSON.parse(localStorage.getItem('teachers') || '[]'),
+      students: ()=> JSON.parse(localStorage.getItem('students') || '[]'),
+      courses: ()=> JSON.parse(localStorage.getItem('courses') || '[]'),
+      saveTeachers: (arr)=> localStorage.setItem('teachers', JSON.stringify(arr)),
+      saveStudents: (arr)=> localStorage.setItem('students', JSON.stringify(arr)),
+      saveCourses: (arr)=> localStorage.setItem('courses', JSON.stringify(arr)),
+    };
+
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    const sections = {teachers: document.getElementById('teachers'), students: document.getElementById('students'), courses: document.getElementById('courses')};
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const modalTitle = document.getElementById('modalTitle');
+    const saveBtn = document.getElementById('saveBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+
+
+    function renderTeachers(filter=''){
+      const arr = db.teachers().filter(t => (t.name + t.email + t.subject).toLowerCase().includes(filter.toLowerCase()));
+      document.getElementById('countTeachers').textContent = arr.length;
+      const wrap = document.getElementById('teachersTableWrap');
+      if(!arr.length){ wrap.innerHTML = '<div class="empty">No teachers yet.</div>'; return; }
+      let html = `<table><thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Actions</th></tr></thead><tbody>`;
+      for(const t of arr){
+        html += `<tr>
+          <td>${escapeHtml(t.name)}</td>
+          <td class="muted">${escapeHtml(t.email)}</td>
+          <td><span class="pill">${escapeHtml(t.subject)}</span></td>
+          <td class="actions">
+            <div class="actions">
+              <button class="btn-sm btn-edit" onclick="openEditTeacher('${t.id}')">Edit</button>
+              <button class="btn-sm btn-delete" onclick="deleteTeacher('${t.id}')">Delete</button>
+            </div>
+          </td>
+        </tr>`;
+      }
+      html += `</tbody></table>`;
+      wrap.innerHTML = html;
+    }
+
+    function renderStudents(filter=''){
+      const arr = db.students().filter(s => (s.name + s.email + s.grade).toLowerCase().includes(filter.toLowerCase()));
+      document.getElementById('countStudents').textContent = arr.length;
+      const wrap = document.getElementById('studentsTableWrap');
+      if(!arr.length){ wrap.innerHTML = '<div class="empty">No students yet.</div>'; return; }
+      let html = `<table><thead><tr><th>Name</th><th>Phone </th><th>Grade</th><th>Actions</th></tr></thead><tbody>`;
+      for(const s of arr){
+        html += `<tr>
+          <td>${escapeHtml(s.name)}</td>
+          <td class="muted">${escapeHtml(s.email)}</td>
+          <td><span class="pill">${escapeHtml(s.grade)}</span></td>
+          <td class="actions">
+            <button class="btn-sm btn-edit" onclick="openEditStudent('${s.id}')">Edit</button>
+            <button class="btn-sm btn-delete" onclick="deleteStudent('${s.id}')">Delete</button>
+          </td>
+        </tr>`;
+      }
+      html += `</tbody></table>`;
+      wrap.innerHTML = html;
+    }
+  
+    function renderCourses(filter=''){
+      const arr = db.courses().filter(c => (c.title + c.code).toLowerCase().includes(filter.toLowerCase()));
+      document.getElementById('countCourses').textContent = arr.length;
+      const wrap = document.getElementById('coursesTableWrap');
+      if(!arr.length){ wrap.innerHTML = '<div class="empty">No courses yet.</div>'; return; }
+      const teachersMap = Object.fromEntries(db.teachers().map(t => [t.id, t]));
+      const studentsMap = Object.fromEntries(db.students().map(s => [s.id, s]));
+      let html = `<table><thead><tr><th>Title</th><th>Code</th><th>Teacher</th><th>Enrolled</th><th>Actions</th></tr></thead><tbody>`;
+      for(const c of arr){
+        const t = teachersMap[c.teacherId];
+        const teacherName = t ? t.name : '<span class="muted">Unassigned</span>';
+        html += `<tr>
+          <td>${escapeHtml(c.title)}</td>
+          <td class="muted">${escapeHtml(c.code)}</td>
+          <td>${teacherName}</td>
+          <td><span class="pill">${c.students ? c.students.length : 0}</span></td>
+          <td class="actions">
+            <button class="btn-sm btn-view" onclick="openViewCourse('${c.id}')">View</button>
+            <button class="btn-sm btn-edit" onclick="openEditCourse('${c.id}')">Edit</button>
+            <button class="btn-sm btn-delete" onclick="deleteCourse('${c.id}')">Delete</button>
+          </td>
+        </tr>`;
+      }
+      html += `</tbody></table>`;
+      wrap.innerHTML = html;
+    }
+
+
+    function escapeHtml(str){
+      if(!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+
+    function renderAll(){
+      renderTeachers();
+      renderStudents();
+      renderCourses();
+    }
+    renderAll();
+
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', ()=> {
+        tabs.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const t = btn.dataset.tab;
+        for(const key in sections){
+          sections[key].style.display = (key === t) ? '' : 'none';
+        }
+ 
+        sections[t].scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+ 
+    document.getElementById('searchTeacher').addEventListener('input', e => renderTeachers(e.target.value));
+    document.getElementById('searchStudent').addEventListener('input', e => renderStudents(e.target.value));
+    document.getElementById('searchCourse').addEventListener('input', e => renderCourses(e.target.value));
+
+
+    function openModal(title, contentHtml, onSave){
+      modalTitle.textContent = title;
+      modalContent.innerHTML = contentHtml;
+      modal.classList.add('show');
+      saveBtn.onclick = () => { onSave(); modal.classList.remove('show'); }
+      cancelBtn.onclick = () => modal.classList.remove('show');
+    }
+
+
+    document.getElementById('addTeacherBtn').addEventListener('click', ()=> {
+      openModal('Add Teacher', teacherFormHtml(), ()=> {
+        const name = modalContent.querySelector('[name=name]').value.trim();
+        const email = modalContent.querySelector('[name=email]').value.trim();
+        const subject = modalContent.querySelector('[name=subject]').value.trim();
+        if(!name || !email){ alert('Please provide name and email'); return; }
+        const arr = db.teachers();
+        arr.push({id:uid(), name, email, subject});
+        db.saveTeachers(arr);
+        renderTeachers();
+      });
+    });
+
+    window.openEditTeacher = function(id){
+      const t = db.teachers().find(x=>x.id===id);
+      if(!t) return alert('Teacher not found');
+      openModal('Edit Teacher', teacherFormHtml(t), ()=> {
+        const name = modalContent.querySelector('[name=name]').value.trim();
+        const email = modalContent.querySelector('[name=email]').value.trim();
+        const subject = modalContent.querySelector('[name=subject]').value.trim();
+        if(!name || !email){ alert('Please provide name and email'); return; }
+        const arr = db.teachers().map(x => x.id===id ? {...x, name, email, subject} : x);
+        db.saveTeachers(arr);
+        renderTeachers(); renderCourses(); 
+      });
+    }
+
+    window.deleteTeacher = function(id){
+      if(!confirm('Delete this teacher?')) return;
+
+      const courses = db.courses().map(c => c.teacherId === id ? {...c, teacherId: null} : c);
+      db.saveCourses(courses);
+      const arr = db.teachers().filter(x=>x.id!==id);
+      db.saveTeachers(arr);
+      renderTeachers(); renderCourses();
+    }
+
+    function teacherFormHtml(data = {}){
+      return `
+        <div class="form-grid">
+          <div>
+            <label>Name</label>
+            <input name="name" type="text" value="${escapeHtml(data.name || '')}" />
+          </div>
+          <div>
+            <label>Phone</label>
+            <input name="email" type="email" value="${escapeHtml(data.email || '')}" />
+          </div>
+          <div>
+            <label>Subject</label>
+            <input name="subject" type="text" value="${escapeHtml(data.subject || '')}" />
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById('addStudentBtn').addEventListener('click', ()=> {
+      openModal('Add Student', studentFormHtml(), ()=> {
+        const name = modalContent.querySelector('[name=name]').value.trim();
+        const email = modalContent.querySelector('[name=email]').value.trim();
+        const grade = modalContent.querySelector('[name=grade]').value.trim();
+        if(!name || !email){ alert('Please provide name and email'); return; }
+        const arr = db.students();
+        arr.push({id:uid(), name, email, grade});
+        db.saveStudents(arr);
+        renderStudents();
+      });
+    });
+
+    window.openEditStudent = function(id){
+      const s = db.students().find(x=>x.id===id);
+      if(!s) return alert('Student not found');
+      openModal('Edit Student', studentFormHtml(s), ()=> {
+        const name = modalContent.querySelector('[name=name]').value.trim();
+        const email = modalContent.querySelector('[name=email]').value.trim();
+        const grade = modalContent.querySelector('[name=grade]').value.trim();
+        if(!name || !email){ alert('Please provide name and email'); return; }
+        const arr = db.students().map(x => x.id===id ? {...x, name, email, grade} : x);
+        db.saveStudents(arr);
+        renderStudents(); renderCourses();
+      });
+    }
+
+    window.deleteStudent = function(id){
+      if(!confirm('Delete this student?')) return;
+      
+      const courses = db.courses().map(c => {
+        if(!c.students) return c;
+        return {...c, students: c.students.filter(sid => sid !== id)};
+      });
+      db.saveCourses(courses);
+      const arr = db.students().filter(x=>x.id!==id);
+      db.saveStudents(arr);
+      renderStudents(); renderCourses();
+    }
+
+    function studentFormHtml(data = {}){
+      return `
+        <div class="form-grid">
+          <div>
+            <label>Name</label>
+            <input name="name" type="text" value="${escapeHtml(data.name || '')}" />
+          </div>
+          <div>
+            <label>Phone</label>
+            <input name="email" type="email" value="${escapeHtml(data.email || '')}" />
+          </div>
+          <div>
+            <label>Grade</label>
+            <input name="grade" type="text" value="${escapeHtml(data.grade || '')}" />
+          </div>
+        </div>
+      `;
+    }
+
+
+    document.getElementById('addCourseBtn').addEventListener('click', ()=> {
+      openModal('Add Course', courseFormHtml(), ()=> {
+        const title = modalContent.querySelector('[name=title]').value.trim();
+        const code = modalContent.querySelector('[name=code]').value.trim();
+        const teacherId = modalContent.querySelector('[name=teacherId]').value || null;
+        const students = Array.from(modalContent.querySelectorAll('[name=students] option:checked')).map(o=>o.value);
+        if(!title || !code){ alert('Please provide title and code'); return; }
+        const arr = db.courses();
+        arr.push({id:uid(), title, code, teacherId: teacherId || null, students});
+        db.saveCourses(arr);
+        renderCourses();
+      });
+    });
+
+    window.openEditCourse = function(id){
+      const c = db.courses().find(x=>x.id===id);
+      if(!c) return alert('Course not found');
+      openModal('Edit Course', courseFormHtml(c), ()=> {
+        const title = modalContent.querySelector('[name=title]').value.trim();
+        const code = modalContent.querySelector('[name=code]').value.trim();
+        const teacherId = modalContent.querySelector('[name=teacherId]').value || null;
+        const students = Array.from(modalContent.querySelectorAll('[name=students] option:checked')).map(o=>o.value);
+        if(!title || !code){ alert('Please provide title and code'); return; }
+        const arr = db.courses().map(x => x.id===id ? {...x, title, code, teacherId: teacherId || null, students} : x);
+        db.saveCourses(arr);
+        renderCourses();
+      });
+    }
+
+    window.deleteCourse = function(id){
+      if(!confirm('Delete this course?')) return;
+      const arr = db.courses().filter(x=>x.id!==id);
+      db.saveCourses(arr);
+      renderCourses();
+    }
+
+    window.openViewCourse = function(id){
+      const c = db.courses().find(x=>x.id===id);
+      if(!c) return alert('Course not found');
+      const teachers = db.teachers();
+      const students = db.students();
+      const teacher = teachers.find(t=>t.id===c.teacherId);
+      const enrolled = (c.students || []).map(sid => students.find(s=>s.id===sid)).filter(Boolean);
+      let html = `<div style="margin-bottom:8px"><strong>Title:</strong> ${escapeHtml(c.title)}</div>`;
+      html += `<div style="margin-bottom:8px"><strong>Code:</strong> ${escapeHtml(c.code)}</div>`;
+      html += `<div style="margin-bottom:8px"><strong>Teacher:</strong> ${teacher ? escapeHtml(teacher.name) : '<span class="muted">Unassigned</span>'}</div>`;
+      html += `<div style="margin-top:8px"><strong>Enrolled Students (${enrolled.length}):</strong><ul>`;
+      if(enrolled.length){
+        for(const s of enrolled) html += `<li>${escapeHtml(s.name)} — <span class="muted">${escapeHtml(s.email)}</span></li>`;
+      } else html += `<li class="muted">No students enrolled</li>`;
+      html += `</ul></div>`;
+      openModal('Course Detail', html, ()=> modal.classList.remove('show'));
+      saveBtn.style.display = 'none';
+      cancelBtn.textContent = 'Close';
+      cancelBtn.onclick = ()=> { saveBtn.style.display=''; cancelBtn.textContent='Cancel'; modal.classList.remove('show'); renderCourses(); };
+    }
+
+    function courseFormHtml(data = {}){
+      const teachers = db.teachers();
+      const students = db.students();
+      const teacherOptions = `<option value="">-- Select teacher (optional) --</option>` + teachers.map(t => `<option value="${t.id}" ${t.id===data.teacherId?'selected':''}>${escapeHtml(t.name)} (${escapeHtml(t.subject)})</option>`).join('');
+      const studentOptions = students.map(s => `<option value="${s.id}" ${ (data.students || []).includes(s.id) ? 'selected' : '' }>${escapeHtml(s.name)} — ${escapeHtml(s.email)}</option>`).join('');
+      return `
+        <div class="form-grid">
+          <div>
+            <label>Title</label>
+            <input name="title" type="text" value="${escapeHtml(data.title || '')}" />
+          </div>
+          <div>
+            <label>Code</label>
+            <input name="code" type="text" value="${escapeHtml(data.code || '')}" />
+          </div>
+          <div>
+            <label>Teacher</label>
+            <select name="teacherId">${teacherOptions}</select>
+          </div>
+          <div style="grid-column:1 / -1;">
+            <label>Enroll Students (Ctrl/Cmd select multiple)</label>
+            <select name="students" multiple size="6" style="width:100%; padding:8px; border-radius:8px; border:1px solid #e6edf6">
+              ${studentOptions}
+            </select>
+          </div>
+        </div>
+      `;
+    }
+
+   
+    window.addEventListener('storage', () => renderAll());
+
+ 
+    const faders = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver((entries)=> {
+      entries.forEach(e=> { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold:0.12});
+    faders.forEach(f => obs.observe(f));
+
+   
+    modal.addEventListener('click', (e)=>{
+      if(e.target === modal) modal.classList.remove('show');
+    });
+
+ 
+    renderAll();
+
+ 
+    window.renderTeachers = renderTeachers;
+    window.renderStudents = renderStudents;
+    window.renderCourses = renderCourses;
+  
+
+
+  </script>
+</body>
+</html>

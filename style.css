@@ -1,0 +1,295 @@
+/* ===== Global Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f7f9fc;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* ===== Navbar ===== */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #004aad;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+header img {
+  width: 60px;
+  height: auto;
+  margin-right: 15px;
+  transition: transform 0.3s ease;
+}
+header img:hover {
+  transform: rotate(10deg) scale(1.05);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ffde59;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  margin-top: 80px;
+  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),
+    url('https://www.computersciencedegreehub.com/wp-content/uploads/2023/02/shutterstock_535124956-scaled.jpg') center/cover;
+  color: white;
+  text-align: center;
+  padding: 120px 20px;
+}
+
+.hero h2 {
+  font-size: 50px;
+  margin-bottom: 20px;
+  animation: fadeInDown 1.2s ease;
+}
+
+.hero p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  animation: fadeInUp 1.2s ease;
+}
+
+/* ===== Keyframes ===== */
+@keyframes fadeInDown {
+  from {opacity: 0; transform: translateY(-30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* ===== Sections ===== */
+section {
+  padding: 80px 60px;
+  text-align: center;
+}
+section h3 {
+  font-size: 32px;
+  color: #004aad;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+section p {
+  font-size: 17px;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* ===== About Section ===== */
+.about img {
+  width: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  transition: transform 0.5s ease;
+}
+.about img:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* ===== Courses Section ===== */
+.courses {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.course {
+  background: white;
+  width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: 0.3s;
+}
+.course:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.course h4 {
+  color: #004aad;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* ===== Teachers Section ===== */
+.teachers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.teacher {
+  background: #fff;
+  width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: 0.3s;
+  position: relative;
+}
+.teacher:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.teacher img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: transform 0.4s ease;
+}
+.teacher:hover img {
+  transform: scale(1.05);
+}
+.teacher h5 {
+  color: #004aad;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.teacher p {
+  font-size: 14px;
+  color: #777;
+}
+
+/* ===== Gallery Section ===== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.4s, box-shadow 0.3s;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* ===== Contact Section ===== */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+input, textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s;
+}
+input:focus, textarea:focus {
+  border-color: #004aad;
+}
+button {
+  background: #004aad;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background: #003580;
+}
+
+/* ===== Footer ===== */
+footer {
+  background: #004aad;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 50px;
+  font-size: 15px;
+}
+
+/* ===== Scroll Animation (fade-in) ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 15px;
+  }
+  nav ul {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .hero h2 {
+    font-size: 36px;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+  section {
+    padding: 50px 20px;
+  }
+  .courses, .teachers {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.ul-nav{
+  margin-right: 280px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+.ul-nav a:hover{
+  text-decoration: underline;
+  
+}

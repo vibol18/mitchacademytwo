@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mitch Academy Chat bot</title>
+   <link rel="stylesheet" href="Ai.css">
+</head>
+<body>
+  <header>🤖 Mitch Academy Chat Bot</header>
+
+  <div class="chat-container">
+    <div class="chat-box" id="chatBox">
+      <div class="message bot">Hello! I’m Ai Academy School assistant 🤖<br>Ask me about teachers, courses, or school info.</div>
+    </div>
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Type your question...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chatBox');
+    const userInput = document.getElementById('userInput');
+
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (text === '') return;
+
+      addMessage(text, 'user');
+      userInput.value = '';
+
+      setTimeout(() => {
+        const reply = getBotReply(text.toLowerCase());
+        addMessage(reply, 'bot');
+      }, 500);
+    }
+
+    function addMessage(message, sender) {
+      const div = document.createElement('div');
+      div.classList.add('message', sender);
+      div.innerHTML = message;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function getBotReply(input) {
+      if (input.includes('teacher') || input.includes('គ្រូ')) {
+        return "👩‍🏫 Our teachers are highly skilled! We have Mr.Chhorn vibol teaching about Basic Code and web design";
+      }
+
+      if (input.includes('price') || input.includes('តម្លៃ') ||  input.includes('course')) {
+        return "💰 Course prices: HTML/CSS/javaScript = $25, PHP = $60, per month.";
+      }
+
+      if (input.includes('about') ||  input.includes('school') ||  input.includes('អំពីសាលា')) {
+        return "🏫 Mitch Academy is a modern learning center in Phnom Penh. We teach IT, English, and business skills with practical training.";
+      }
+
+      if (input.includes('contact') || input.includes('ទំនាក់ទំនង')) {
+        return "📞 You can contact us at 096 6051926 or email mitchacademy@gmail.com";
+      }
+
+      if (input.includes('hi')||  input.includes('hello') || input.includes('សួស្តី')) {
+        return "👋 Hello there! How can I help you today?";
+      }
+      if(input.includes('developer') || input.includes('namedeveloper')|| input.includes('aboutdeveloper')){
+        return "the name of developer is Mr.chhorn Vibol build this website"
+      }
+      if(input.includes('smos')||input.includes('smos ot')|| input.includes('smos ot')){
+        return"ស្មោះមិនស្មោះសាកធ្វើសង្សារDeveloperទៅ"
+      }
+      if(input.includes('lern')|| input.includes('lerning')||input.includes('want to lern')){
+        return "hasha ល្អណាស់បើអ្នកចង់សិក្សា!tell me the language code you want to lerning?";
+      }
+      return "🤔 Sorry, I don’t understand that yet. Try asking about our teachers, prices, or courses.";
+      
+    }
+    
+
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  </script>
+</body>
+</html>
