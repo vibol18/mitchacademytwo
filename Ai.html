@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mitch Academy Chat bot</title>
-   <link rel="stylesheet" href="Ai.css">
+  <title>Mitch Academy Chat Bot</title>
+  <link rel="stylesheet" href="Ai.css">
 </head>
 <body>
   <header>🤖 Mitch Academy Chat Bot</header>
 
   <div class="chat-container">
     <div class="chat-box" id="chatBox">
-      <div class="message bot">Hello! I’m Ai Academy School assistant 🤖<br>Ask me about teachers, courses, or school info.</div>
+      <div class="message bot">
+        Hello! I’m Ai Academy School assistant 🤖<br>
+        Ask me about teachers, courses, or school info.
+      </div>
     </div>
     <div class="input-area">
       <input type="text" id="userInput" placeholder="Type your question...">
@@ -23,6 +26,7 @@
     const chatBox = document.getElementById('chatBox');
     const userInput = document.getElementById('userInput');
 
+    // ========== SEND MESSAGE ==========
     function sendMessage() {
       const text = userInput.value.trim();
       if (text === '') return;
@@ -36,6 +40,7 @@
       }, 500);
     }
 
+    // ========== ADD MESSAGE ==========
     function addMessage(message, sender) {
       const div = document.createElement('div');
       div.classList.add('message', sender);
@@ -44,40 +49,1609 @@
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
+    // ========== BOT REPLIES ==========
     function getBotReply(input) {
+      // ===== SCHOOL INFO =====
       if (input.includes('teacher') || input.includes('គ្រូ')) {
-        return "👩‍🏫 Our teachers are highly skilled! We have Mr.Chhorn vibol teaching about Basic Code and web design";
+        return "👩‍🏫 Our teachers are skilled! Mr.Chhorn Vibol teaches Basic Code and Web Design.";
       }
-
-      if (input.includes('price') || input.includes('តម្លៃ') ||  input.includes('course')) {
-        return "💰 Course prices: HTML/CSS/javaScript = $25, PHP = $60, per month.";
+      if (input.includes('price') || input.includes('តម្លៃ') || input.includes('course')) {
+        return "💰 Course prices: HTML/CSS/JavaScript = $25, PHP = $60, per month.";
       }
-
-      if (input.includes('about') ||  input.includes('school') ||  input.includes('អំពីសាលា')) {
-        return "🏫 Mitch Academy is a modern learning center in Phnom Penh. We teach IT, English, and business skills with practical training.";
+      if (input.includes('about') || input.includes('school') || input.includes('អំពីសាលា')) {
+        return "🏫 Mitch Academy is a modern learning center in Phnom Penh offering IT and business skills.";
       }
-
       if (input.includes('contact') || input.includes('ទំនាក់ទំនង')) {
-        return "📞 You can contact us at 096 6051926 or email mitchacademy@gmail.com";
+        return "📞 Contact us at 096 6051926 or email mitchacademy@gmail.com.";
       }
 
-      if (input.includes('hi')||  input.includes('hello') || input.includes('សួស្តី')) {
+      // ===== GREETING =====
+      if (input.includes('hi') || input.includes('hello') || input.includes('សួស្តី')) {
         return "👋 Hello there! How can I help you today?";
       }
-      if(input.includes('developer') || input.includes('namedeveloper')|| input.includes('aboutdeveloper')){
-        return "the name of developer is Mr.chhorn Vibol build this website"
+      if (input.includes('bye') || input.includes('លាហើយ')) {
+        return "👋 Goodbye! Have a great learning day!";
       }
-      if(input.includes('smos')||input.includes('smos ot')|| input.includes('smos ot')){
-        return"ស្មោះមិនស្មោះសាកធ្វើសង្សារDeveloperទៅ"
+      if (input.includes('thank') || input.includes('អរគុណ')) {
+        return "🙏 You're welcome! Always happy to help.";
       }
-      if(input.includes('lern')|| input.includes('lerning')||input.includes('want to lern')){
-        return "hasha ល្អណាស់បើអ្នកចង់សិក្សា!tell me the language code you want to lerning?";
+
+      // ===== DEVELOPER INFO =====
+      if (input.includes('developer') || input.includes('namedeveloper') || input.includes('aboutdeveloper')) {
+        return "🧑‍💻 Developer: Mr. Chhorn Vibol, creator of this chatbot and website.";
       }
-      return "🤔 Sorry, I don’t understand that yet. Try asking about our teachers, prices, or courses.";
+
+      // ===== STUDY TOPICS =====
+      if (input.includes('lern') || input.includes('learn') || input.includes('want to lern')) {
+        return "📚 Hasha ល្អណាស់បើអ្នកចង់សិក្សា! Tell me the language code you want to learn?";
+      }
+      if (input.includes('html')) return "🌐 HTML builds the structure of a webpage — like the bones of a body.";
+      if (input.includes('css')) return "🎨 CSS makes your website beautiful — controls color, layout, and animations.";
+      if (input.includes('javascript') || input.includes('js')) return "⚡ JavaScript adds interactivity — used for buttons, forms, sliders, and games.";
+      if (input.includes('php')) return "🐘 PHP handles server logic and connects with databases like MySQL.";
+      if (input.includes('python')) return "🐍 Python is great for AI, data science, and backend programming.";
+      if (input.includes('sql') || input.includes('database')) return "🗄️ SQL stores and retrieves data for websites and apps.";
+      if (input.includes('react')) return "⚛️ React is a JavaScript library for building modern user interfaces.";
+      if (input.includes('bootstrap')) return "💜 Bootstrap helps design responsive, mobile-friendly websites fast.";
+      if (input.includes('vscode') || input.includes('editor')) return "💻 VS Code is a free editor from Microsoft — powerful and customizable.";
+
+     
+      if (input.includes('c++')) return "💻 C++ is a powerful language used for games, system software, and performance-heavy apps.";
+      if (input.includes('java')) return "☕ Java is used in Android development, banking systems, and enterprise software.";
+      if (input.includes('node') || input.includes('nodejs')) return "🟩 Node.js lets JavaScript run on servers — fast and efficient!";
+      if (input.includes('frontend')) return "🎨 Frontend is what users see — made with HTML, CSS, and JavaScript.";
+      if (input.includes('backend')) return "⚙️ Backend handles logic and databases — made with PHP, Python, or Node.js.";
+      if (input.includes('fullstack')) return "🧠 Full-stack developers can do both frontend and backend!";
+      if (input.includes('github')) return "🐙 GitHub is where developers store and share their code.";
+      if (input.includes('git')) return "🔧 Git tracks code changes — it’s like a time machine for developers.";
+      if (input.includes('api')) return "🔗 API connects apps to share data.";
+      if (input.includes('json')) return "📦 JSON stores data in text format (key-value pairs).";
+      if (input.includes('xml')) return "📘 XML is used for data exchange between systems.";
+      if (input.includes('http') || input.includes('https')) return "🌐 HTTP/HTTPS are protocols that connect browsers and servers.";
+      if (input.includes('domain')) return "🌍 A domain is your website name, like mitchacademy.com.";
+      if (input.includes('hosting')) return "💾 Hosting stores your website files online.";
+      if (input.includes('seo')) return "📈 SEO helps your site appear on Google.";
+
+  
+      if (input.includes('smos') || input.includes('ស្មោះ')) return "😆 ស្មោះមិនស្មោះ សាកធ្វើសង្សារ Developer ទៅ!";
+      if (input.includes('love') || input.includes('ស្រលាញ់')) return "❤️ Love is beautiful, but coding never breaks your heart 😄.";
+      if (input.includes('joke')) return "😂 Why did the programmer quit his job? Because he didn’t get arrays!";
+      if (input.includes('game')) return "🎮 You can build games using JavaScript or Python. Want me to show how?";
+      if (input.includes('bored')) return "🎮 Try coding a game or chatting with me — boredom solved!";
+      if (input.includes('happy')) return "😊 That’s awesome! Keep smiling and keep learning.";
+      if (input.includes('sad')) return "😢 Don’t be sad. Every error can be fixed — just like in life!";
+      if (input.includes('time')) return "🕒 Current time: " + new Date().toLocaleTimeString();
+      if (input.includes('date')) return "📅 Today’s date: " + new Date().toDateString();
+      if (input.includes('weather')) return "☀️ I can’t see outside, but I hope it’s a nice day in your area!";
+      if (input.includes('sleep')) return "😴 I never sleep. I’m always ready to chat!";
+      if (input.includes('motivate') || input.includes('motivation')) return "🚀 Keep learning — small progress leads to big success!";
+      if (input.includes('fail')) return "💡 Failing is part of learning. Each bug makes you stronger!";
+      if (input.includes('success')) return "🏆 Success comes to those who code and never give up!";
+      if (input.includes('who are you')) return "🤖 I'm Mitch Academy Bot — your study and fun assistant!";
+      if (input.includes('what is your name')) return "🪪 My name is MitchBot, nice to meet you!";
+      if (input.includes('where are you')) return "📍 I live inside Mitch Academy’s website!";
+      if (input.includes('how are you')) return "😄 I’m great! Ready to help you learn today!";
+      if (input.includes('register') || input.includes('ចុះឈ្មោះ')) return "📝 You can register online or visit our school in Phnom Penh.";
+      if (input.includes('location') || input.includes('ទីតាំង')) return "📍 Mitch Academy is located in Phnom Penh, near Toul Kork area.";
+      if (input.includes('schedule') || input.includes('ម៉ោងរៀន')) return "🕐 Classes run from 8:00AM–8:00PM, Monday to Saturday.";
+      if (input.includes('time') || input.includes('ពេល')) {
+        return "⌚ Right now it's study time! Don’t waste it 😉";
+      }
+
+      if (input.includes('weather') || input.includes('អាកាសធាតុ')) {
+        return "🌤️ The weather looks perfect for studying today!";
+      }
+
+      if (input.includes('study') || input.includes('រៀន')) {
+        return "📘 Keep learning every day. You’ll become amazing soon!";
+      }
+
+      if (input.includes('mitch') || input.includes('academy')) {
+        return "🏫 Mitch Academy — a place where your coding dream starts!";
+      }
+
+      if (input.includes('teacher name') || input.includes('គ្រូឈ្មោះ')) {
+        return "👨‍🏫 Our main teacher is Mr. Chhorn Vibol — professional web developer.";
+      }
+
+      if (input.includes('html')) {
+        return "📘 HTML (HyperText Markup Language) is used to structure content on web pages.";
+      }
+
+      if (input.includes('css')) {
+        return "🎨 CSS (Cascading Style Sheets) helps style and design your webpage beautifully!";
+      }
+
+      if (input.includes('javascript') || input.includes('js')) {
+        return "⚡ JavaScript adds life to your website — interactivity, animation, and logic!";
+      }
+
+      if (input.includes('php')) {
+        return "💻 PHP is a backend language for building dynamic websites and connecting to databases.";
+      }
+
+      if (input.includes('python')) {
+        return "🐍 Python is a flexible language for AI, web, and data science!";
+      }
+
+      if (input.includes('java')) {
+        return "☕ Java is powerful for building mobile apps and enterprise systems.";
+      }
+
+      if (input.includes('c++') || input.includes('cpp')) {
+        return "🧩 C++ is great for learning logic, system apps, and game development!";
+      }
+
+      if (input.includes('good morning') || input.includes('អរុណសួស្តី')) {
+        return "🌅 Good morning! Hope you have a productive day learning!";
+      }
+
+      if (input.includes('good night') || input.includes('រាត្រីសួស្តី')) {
+        return "🌙 Good night! Sweet dreams and review your code tomorrow!";
+      }
+
+      if (input.includes('thank') || input.includes('អរគុណ')) {
+        return "🙏 You're very welcome! Keep coding and smiling 😊";
+      }
+
+      if (input.includes('who are you') || input.includes('អ្នកជានរណា')) {
+        return "🤖 I’m Mitch Academy Bot, here to help you learn programming!";
+      }
+
+      if (input.includes('location') || input.includes('ទីតាំង')) {
+        return "📍 Mitch Academy is located in Phnom Penh, Cambodia.";
+      }
+
+      if (input.includes('course list') || input.includes('មុខវិជ្ជា')) {
+        return "📚 We teach: HTML, CSS, JavaScript, PHP, React, Node.js, and Python.";
+      }
+
+      if (input.includes('how to register') || input.includes('ចុះឈ្មោះ')) {
+        return "📝 To register, please contact us at 096 6051926 or visit Mitch Academy.";
+      }
+
+      if (input.includes('developer') || input.includes('អ្នកបង្កើត')) {
+        return "👨‍💻 The website was built by Mr. Chhorn Vibol — a talented web developer!";
+      }
+
+      if (input.includes('learn web') || input.includes('រៀន web')) {
+        return "🌐 Web development includes HTML, CSS, JavaScript, and backend like PHP or Node.js.";
+      }
+
+      if (input.includes('learn app') || input.includes('រៀន app')) {
+        return "📱 You can learn mobile app development using Flutter, React Native, or Java!";
+      }
+
+      if (input.includes('language') || input.includes('ភាសា')) {
+        return "🗣️ We teach programming languages like JavaScript, Python, and PHP.";
+      }
+
+      if (input.includes('future') || input.includes('អនាគត')) {
+        return "🚀 The future belongs to coders — keep learning and you’ll shine!";
+      }
+
+      if (input.includes('motivation') || input.includes('លើកទឹកចិត្ត')) {
+        return "💪 Never give up! Every line of code brings you closer to success.";
+      }
+
+      if (input.includes('help') || input.includes('ជួយ')) {
+        return "🤝 Sure! Tell me what topic you need help with — HTML, CSS, JS, or PHP?";
+      }
+
+      if (input.includes('fun fact') || input.includes('ចំណេះដឹងសប្បាយ')) {
+        return "🎉 Fun fact: The first website ever made is still online at info.cern.ch!";
+      }
+
+      if (input.includes('computer') || input.includes('កុំព្យូទ័រ')) {
+        return "💻 A computer is your best friend if you know how to talk to it in code!";
+      }
+
+      if (input.includes('ai') || input.includes('សិប្បនិម្មិត')) {
+        return "🤖 AI means Artificial Intelligence — computers that can learn and think!";
+      }
+
+      if (input.includes('game') || input.includes('ហ្គេម')) {
+        return "🎮 Want to make games? Learn JavaScript, Unity (C#), or C++!";
+      }
+
+      if (input.includes('internet') || input.includes('អ៊ីនធឺណិត')) {
+        return "🌍 The internet connects billions of devices — and websites are its heart!";
+      }
+
+      if (input.includes('email')) {
+        return "📧 You can email us at mitchacademy@gmail.com anytime!";
+      }
+
+      if (input.includes('schedule') || input.includes('កាលវិភាគ')) {
+        return "🗓️ Classes run Monday to Friday, from 8 AM to 6 PM.";
+      }
+
+      if (input.includes('weekend') || input.includes('ចុងសប្ដាហ៍')) {
+        return "🎉 Weekend is free time! But revising your lessons is a good idea 😉";
+      }
+
+      if (input.includes('website') || input.includes('គេហទំព័រ')) {
+        return "🌐 Visit our official website to explore more courses and updates!";
+      }
+
+      if (input.includes('mission') || input.includes('បេសកកម្ម')) {
+        return "🎯 Our mission is to empower Cambodian youth through technology education!";
+      }
+
+      if (input.includes('vision') || input.includes('ចក្ខុវិស័យ')) {
+        return "🌟 Our vision is to make tech education accessible to everyone in Cambodia!";
+      }
+
+      if (input.includes('team') || input.includes('ក្រុមការងារ')) {
+        return "👨‍🏫 Our team includes experienced teachers, developers, and mentors.";
+      }
+
+      if (input.includes('project') || input.includes('គម្រោង')) {
+        return "🧩 Students work on real projects — websites, apps, and e-commerce systems!";
+      }
+
+      if (input.includes('certificate') || input.includes('សញ្ញាបត្រ')) {
+        return "🎓 After completing your course, you’ll receive an official certificate!";
+      }
+
+      if (input.includes('discount') || input.includes('បញ្ចុះតម្លៃ')) {
+        return "💵 We offer 10% discount for group registration of 3 or more students!";
+      }
+
+      if (input.includes('thank you') || input.includes('អរគុណច្រើន')) {
+        return "😊 You're welcome! Keep coding and keep smiling!";
+      }
+      if (input.includes('class') || input.includes('ថ្នាក់')) {
+        return "🏫 Each class has around 10–15 students for better learning focus!";
+      }
+
+      if (input.includes('teacher info') || input.includes('ព័ត៌មានគ្រូ')) {
+        return "👩‍🏫 Mr. Chhorn Vibol — expert in JavaScript, PHP, and web design.";
+      }
+
+      if (input.includes('open time') || input.includes('ម៉ោងបើក')) {
+        return "🕗 We open from 8:00 AM to 6:00 PM, Monday to Friday.";
+      }
+
+      if (input.includes('close time') || input.includes('ម៉ោងបិទ')) {
+        return "🕕 We close at 6:00 PM every weekday.";
+      }
+
+      if (input.includes('holiday') || input.includes('ថ្ងៃឈប់សម្រាក')) {
+        return "🎉 We are closed on Sundays and public holidays.";
+      }
+
+      if (input.includes('course duration') || input.includes('រយៈពេលសិក្សា')) {
+        return "🕒 Each course lasts about 3 months, depending on your pace.";
+      }
+
+      if (input.includes('payment') || input.includes('ការទូទាត់')) {
+        return "💳 You can pay monthly or full course payment for a discount.";
+      }
+
+      if (input.includes('facebook') || input.includes('ហ្វេសបុក')) {
+        return "📱 Visit our Facebook page: Mitch Academy Cambodia.";
+      }
+
+      if (input.includes('youtube') || input.includes('យូធូប')) {
+        return "▶️ Check out our tutorials on YouTube: Mitch Academy Official Channel!";
+      }
+
+      if (input.includes('instructor') || input.includes('គ្រូបង្រៀន')) {
+        return "👨‍🏫 All instructors are experienced developers and educators.";
+      }
+
+      if (input.includes('student') || input.includes('សិស្ស')) {
+        return "🧑‍🎓 We currently have more than 500 students enrolled!";
+      }
+
+      if (input.includes('graduate') || input.includes('បញ្ចប់ការសិក្សា')) {
+        return "🎓 After graduation, students can build their own projects or apply for jobs!";
+      }
+
+      if (input.includes('job') || input.includes('ការងារ')) {
+        return "💼 Many of our students find jobs in web development and IT companies.";
+      }
+
+      if (input.includes('internship') || input.includes('ហ្វឹកហាត់ការងារ')) {
+        return "🧰 We offer internship opportunities for top students.";
+      }
+
+      if (input.includes('library') || input.includes('បណ្ណាល័យ')) {
+        return "📚 Our academy has a small digital library for student learning resources.";
+      }
+
+      if (input.includes('wifi') || input.includes('អ៊ីនធឺណិតឥតគិតថ្លៃ')) {
+        return "📶 Yes! Free Wi-Fi is available for all students at the academy.";
+      }
+
+      if (input.includes('address') || input.includes('អាសយដ្ឋាន')) {
+        return "📍 We’re located near Phnom Penh City Center, Cambodia.";
+      }
+
+      if (input.includes('transport') || input.includes('ការដឹកជញ្ជូន')) {
+        return "🚗 We are easy to reach by tuk-tuk, car, or motorcycle!";
+      }
+
+      if (input.includes('test') || input.includes('តេស្ត')) {
+        return "🧠 We have small quizzes and tests to check your understanding.";
+      }
+
+      if (input.includes('exam') || input.includes('ប្រឡង')) {
+        return "📝 Exams are done at the end of each level for certification.";
+      }
+
+      if (input.includes('beginner') || input.includes('អ្នកថ្មី')) {
+        return "🌱 Don’t worry! We start from absolute beginner to advanced step by step.";
+      }
+
+      if (input.includes('advance') || input.includes('ខ្ពស់')) {
+        return "🚀 Our advanced course includes React, Node.js, and full-stack projects.";
+      }
+
+      if (input.includes('practice') || input.includes('ហាត់ប្រាណ')) {
+        return "💪 Practice every day to become a true coder!";
+      }
+
+      if (input.includes('website design') || input.includes('រចនាគេហទំព័រ')) {
+        return "🎨 Learn website design using HTML, CSS, and Figma!";
+      }
+
+      if (input.includes('project idea') || input.includes('គំនិតគម្រោង')) {
+        return "💡 How about building a small e-commerce website or chatbot project?";
+      }
+
+      if (input.includes('group study') || input.includes('សិក្សាជាក្រុម')) {
+        return "👥 Group study is encouraged! It helps students learn faster.";
+      }
+
+      if (input.includes('solo study') || input.includes('សិក្សាម្នាក់ឯង')) {
+        return "🧘 Studying alone is fine too — just stay focused and motivated!";
+      }
+
+      if (input.includes('snack') || input.includes('អាហារសម្រន់')) {
+        return "🍪 Students can enjoy snacks and drinks during break time.";
+      }
+
+      if (input.includes('break time') || input.includes('ម៉ោងសម្រាក')) {
+        return "☕ Break time is 15 minutes every 2 hours.";
+      }
+
+      if (input.includes('classroom') || input.includes('បន្ទប់រៀន')) {
+        return "🏫 Our classrooms are clean, air-conditioned, and equipped with computers.";
+      }
+
+      if (input.includes('certificate sample') || input.includes('គំរូសញ្ញាបត្រ')) {
+        return "🎓 Certificates include your name, course, and completion level.";
+      }
+
+      if (input.includes('learn english') || input.includes('រៀនអង់គ្លេស')) {
+        return "🗣️ We also teach English for communication and business purposes.";
+      }
+
+      if (input.includes('coding tip') || input.includes('គន្លឹះសរសេរកូដ')) {
+        return "💡 Always test small pieces of code before building large projects!";
+      }
+
+      if (input.includes('motivate me') || input.includes('លើកទឹកចិត្តខ្ញុំ')) {
+        return "🔥 Keep going! Every error you fix makes you a better developer!";
+      }
+
+      if (input.includes('how are you') || input.includes('សុខសប្បាយទេ')) {
+        return "😊 I'm great! Thanks for asking. How about you?";
+      }
+
+      if (input.includes('happy') || input.includes('រីករាយ')) {
+        return "😁 I'm glad you're happy! Let’s code something fun!";
+      }
+
+      if (input.includes('sad') || input.includes('អាណិត')) {
+        return "😔 Don’t be sad. Coding will cheer you up!";
+      }
+
+      if (input.includes('joke') || input.includes('កំប្លែង')) {
+        return "😂 Why do programmers hate nature? It has too many bugs!";
+      }
+
+      if (input.includes('music') || input.includes('តន្ត្រី')) {
+        return "🎵 Listening to calm music helps you focus while coding.";
+      }
+
+      if (input.includes('quote') || input.includes('ពាក្យល្បី')) {
+        return "💬 “Code is like humor. When you have to explain it, it’s bad.” — Cory House";
+      }
+
+      if (input.includes('goal') || input.includes('គោលដៅ')) {
+        return "🎯 Set your goal: learn one new coding concept every day!";
+      }
+
+      if (input.includes('plan') || input.includes('ផែនការ')) {
+        return "🗓️ Make a weekly learning plan to track your progress.";
+      }
+
+      if (input.includes('quiz') || input.includes('សំណួរ')) {
+        return "❓ Here's a quiz: What does HTML stand for? (Hint: It's not a language!)";
+      }
+
+      if (input.includes('answer html') || input.includes('ចម្លើយ html')) {
+        return "✅ It stands for HyperText Markup Language!";
+      }
+
+      if (input.includes('thank you bot') || input.includes('អរគុណបូត')) {
+        return "🤖 You're welcome! I'm happy to help you learn coding!";
+      }
+      if (input.includes('motivation quote') || input.includes('ពាក្យលើកទឹកចិត្ត')) {
+        return "🌟 “Success is not final; failure is not fatal: It is the courage to continue that counts.” — Winston Churchill";
+      }
+
+      if (input.includes('coding quote') || input.includes('ពាក្យអំពីកូដ')) {
+        return "💻 “Talk is cheap. Show me the code.” — Linus Torvalds";
+      }
+
+      if (input.includes('teacher list') || input.includes('បញ្ជីគ្រូ')) {
+        return "👩‍🏫 Teachers: Mr. Chhorn Vibol, Ms. Sokha, Mr. Sareth, and Ms. Dina.";
+      }
+
+      if (input.includes('best course') || input.includes('វគ្គសិក្សាល្អបំផុត')) {
+        return "🏆 The most popular course is Web Development (HTML, CSS, JS, PHP).";
+      }
+
+      if (input.includes('hard course') || input.includes('វគ្គសិក្សាពិបាក')) {
+        return "😅 The hardest course might be Full Stack — but it’s also the most rewarding!";
+      }
+
+      if (input.includes('easy course') || input.includes('វគ្គសិក្សាងាយ')) {
+        return "🙂 HTML & CSS are great starting points for beginners.";
+      }
+
+      if (input.includes('course fee') || input.includes('ថ្លៃសិក្សា')) {
+        return "💰 Course fees: Web Development = $25/month, PHP = $60/month, Python = $50/month.";
+      }
+
+      if (input.includes('how to pay') || input.includes('បង់ប្រាក់យ៉ាងដូចម្តេច')) {
+        return "💵 You can pay directly at the academy or via ABA account.";
+      }
+
+      if (input.includes('aba') || input.includes('ធនាគារ aba')) {
+        return "🏦 ABA Account: Mitch Academy - 000 123 456";
+      }
+
+      if (input.includes('telegram') || input.includes('តេលេក្រាម')) {
+        return "📱 Join our Telegram group for daily updates and learning tips!";
+      }
+
+      if (input.includes('instagram') || input.includes('អ៊ីនស្តាក្រាម')) {
+        return "📸 Follow us on Instagram: @mitchacademy_official";
+      }
+
+      if (input.includes('tiktok') || input.includes('ទិកតុក')) {
+        return "🎥 Watch short coding videos on TikTok: Mitch Academy Cambodia.";
+      }
+
+      if (input.includes('learn react') || input.includes('រៀន react')) {
+        return "⚛️ React is a JavaScript library for building fast user interfaces.";
+      }
+
+      if (input.includes('learn node') || input.includes('រៀន node')) {
+        return "🌐 Node.js lets you run JavaScript on the server-side!";
+      }
+
+      if (input.includes('learn mysql') || input.includes('រៀន mysql')) {
+        return "🗄️ MySQL is used to store and manage data for your web apps.";
+      }
+
+      if (input.includes('learn database') || input.includes('រៀន database')) {
+        return "💾 Databases help store user info, products, and data securely.";
+      }
+
+      if (input.includes('backend') || input.includes('ផ្នែកខាងក្រោយ')) {
+        return "⚙️ Backend development handles data, servers, and APIs.";
+      }
+
+      if (input.includes('frontend') || input.includes('ផ្នែកខាងមុខ')) {
+        return "🎨 Frontend development handles design, animation, and UI interactions.";
+      }
+
+      if (input.includes('full stack') || input.includes('ផ្ទៃពេញ')) {
+        return "🧠 Full-stack = frontend + backend = one developer doing it all!";
+      }
+
+      if (input.includes('learn ai') || input.includes('រៀន ai')) {
+        return "🤖 Learn AI using Python with libraries like TensorFlow or PyTorch.";
+      }
+
+      if (input.includes('learn design') || input.includes('រៀនរចនា')) {
+        return "🎨 You can learn UI/UX design using Figma, Canva, or Adobe XD.";
+      }
+
+      if (input.includes('learn figma') || input.includes('រៀន figma')) {
+        return "🖌️ Figma helps you design beautiful website layouts easily!";
+      }
+
+      if (input.includes('learn photoshop') || input.includes('រៀន photoshop')) {
+        return "📷 Photoshop is great for editing photos and creating design elements.";
+      }
+
+      if (input.includes('learn video edit') || input.includes('រៀនកែវីដេអូ')) {
+        return "🎬 You can use CapCut, Premiere Pro, or DaVinci Resolve to edit videos.";
+      }
+
+      if (input.includes('learn excel') || input.includes('រៀន excel')) {
+        return "📊 Excel is used for data management, accounting, and business analysis.";
+      }
+
+      if (input.includes('learn powerpoint') || input.includes('រៀន powerpoint')) {
+        return "📽️ PowerPoint helps you make professional presentations.";
+      }
+
+      if (input.includes('learn word') || input.includes('រៀន word')) {
+        return "📝 Microsoft Word is essential for document writing and reports.";
+      }
+
+      if (input.includes('learn typing') || input.includes('វាយអក្សរ')) {
+        return "⌨️ You can improve typing speed using websites like TypingClub.com.";
+      }
+
+      if (input.includes('learn english speaking') || input.includes('និយាយអង់គ្លេស')) {
+        return "🗣️ We offer English conversation classes every weekend.";
+      }
+
+      if (input.includes('learn business') || input.includes('រៀនអាជីវកម្ម')) {
+        return "💼 Business course includes marketing, sales, and digital strategy.";
+      }
+
+      if (input.includes('learn marketing') || input.includes('រៀនទីផ្សារ')) {
+        return "📢 Learn digital marketing: Facebook Ads, Google Ads, and SEO.";
+      }
+
+      if (input.includes('learn seo') || input.includes('រៀន seo')) {
+        return "🔍 SEO helps your website rank higher on Google search!";
+      }
+
+      if (input.includes('learn freelancing') || input.includes('សិក្សាផ្តាច់ខ្លួន')) {
+        return "💻 Learn how to earn money online by doing freelance projects!";
+      }
+
+      if (input.includes('freelance site') || input.includes('គេហទំព័រផ្តាច់ខ្លួន')) {
+        return "🌍 Top freelancing sites: Upwork, Fiverr, Freelancer, and Toptal.";
+      }
+
+      if (input.includes('learn github') || input.includes('រៀន github')) {
+        return "🐙 GitHub helps developers share and collaborate on code.";
+      }
+
+      if (input.includes('learn git') || input.includes('រៀន git')) {
+        return "🔧 Git helps track versions of your code and manage teamwork.";
+      }
+
+      if (input.includes('portfolio') || input.includes('សៀវភៅស្នាដៃ')) {
+        return "📁 Build a portfolio website to show your projects and get jobs!";
+      }
+
+      if (input.includes('resume') || input.includes('ប្រវត្តិរូប')) {
+        return "📄 Resume tip: Include your skills, projects, and contact info clearly.";
+      }
+
+      if (input.includes('job interview') || input.includes('សម្ភាសការងារ')) {
+        return "💬 Be confident! Review basic coding questions before the interview.";
+      }
+
+      if (input.includes('salary') || input.includes('ប្រាក់ខែ')) {
+        return "💸 Web developers in Cambodia earn between $300–$1,000 per month.";
+      }
+
+      if (input.includes('career') || input.includes('អាជីព')) {
+        return "🚀 Career paths: Web Developer, Designer, Software Engineer, or Freelancer.";
+      }
+
+      if (input.includes('learn career path') || input.includes('ផ្លូវអាជីព')) {
+        return "🎯 Start small: HTML → CSS → JS → Framework → Projects → Job!";
+      }
+
+      if (input.includes('goal of mitch academy') || input.includes('គោលដៅសាលា')) {
+        return "🏫 Our goal is to help Cambodian students become skilled digital creators!";
+      }
+
+      if (input.includes('love') || input.includes('ស្រឡាញ់')) {
+        return "❤️ Coding is love — if you love it, success will follow!";
+      }
+
+      if (input.includes('funny') || input.includes('សើច')) {
+        return "😂 Programmer’s favorite place to hang out? The Foo Bar!";
+      }
+
+      if (input.includes('bye') || input.includes('លាហើយ')) {
+        return "👋 Goodbye! See you next time — keep coding!";
+      }
+
+      if (input.includes('see you') || input.includes('ជួបគ្នា')) {
+        return "😊 See you soon, my coding friend!";
+      }
+
+      if (input.includes('good afternoon') || input.includes('រសៀលសួស្តី')) {
+        return "🌞 Good afternoon! Ready to learn something new?";
+      }
+
+      if (input.includes('good evening') || input.includes('ល្ងាចសួស្តី')) {
+        return "🌇 Good evening! Let’s do some coding before dinner.";
+      }
+
+      if (input.includes('goodbye bot') || input.includes('លាបូត')) {
+        return "🤖 Bye bye! I’ll be waiting for your next question 😄";
+      }
+      // ===== HTML Tags =====
+      if (input.includes('html tag') || input.includes('តួអក្សរ html')) {
+        return "📘 HTML tags are used to structure web content, e.g., <p>, <div>, <h1>, <img>.";
+      }
+
+      if (input.includes('h1 tag') || input.includes('<h1>')) {
+        return "🔹 <h1> is used for main headings in HTML.";
+      }
+
+      if (input.includes('p tag') || input.includes('<p>')) {
+        return "🔹 <p> is used for paragraphs in HTML.";
+      }
+
+      if (input.includes('a tag') || input.includes('<a>')) {
+        return "🔹 <a> defines a hyperlink to another page or location.";
+      }
+
+      if (input.includes('img tag') || input.includes('<img>')) {
+        return "🔹 <img> is used to display images in HTML.";
+      }
+
+      if (input.includes('div tag') || input.includes('<div>')) {
+        return "🔹 <div> is a container for grouping content in HTML.";
+      }
+
+      if (input.includes('span tag') || input.includes('<span>')) {
+        return "🔹 <span> is an inline container used to style parts of text.";
+      }
+
+      if (input.includes('ul tag') || input.includes('<ul>')) {
+        return "🔹 <ul> is an unordered list container in HTML.";
+      }
+
+      if (input.includes('li tag') || input.includes('<li>')) {
+        return "🔹 <li> represents a list item inside <ul> or <ol>.";
+      }
+
+      if (input.includes('form tag') || input.includes('<form>')) {
+        return "🔹 <form> is used to collect user input on a webpage.";
+      }
+
+      // ===== CSS Properties =====
+      if (input.includes('css color') || input.includes('ពណ៌')) {
+        return "🎨 CSS 'color' changes text color. Example: color: red;";
+      }
+
+      if (input.includes('css background') || input.includes('ផ្ទៃខាងក្រោយ')) {
+        return "🎨 CSS 'background' sets background color or image. Example: background: #f0f0f0;";
+      }
+
+      if (input.includes('css margin') || input.includes('ចន្លោះក្រៅ')) {
+        return "🎨 CSS 'margin' adds space outside elements. Example: margin: 10px;";
+      }
+
+      if (input.includes('css padding') || input.includes('ចន្លោះខាងក្នុង')) {
+        return "🎨 CSS 'padding' adds space inside elements. Example: padding: 5px;";
+      }
+
+      if (input.includes('css border') || input.includes('ខ្នង')) {
+        return "🎨 CSS 'border' adds border around elements. Example: border: 1px solid black;";
+      }
+
+      if (input.includes('css font-size') || input.includes('ទំហំអក្សរ')) {
+        return "🎨 CSS 'font-size' changes text size. Example: font-size: 16px;";
+      }
+
+      if (input.includes('css display') || input.includes('បង្ហាញ')) {
+        return "🎨 CSS 'display' controls element layout. Example: display: block;";
+      }
+
+      if (input.includes('css flex') || input.includes('flex')) {
+        return "🎨 CSS 'flex' is used to create flexible layouts. Example: display: flex;";
+      }
+
+      if (input.includes('css grid') || input.includes('grid')) {
+        return "🎨 CSS 'grid' helps build complex 2D layouts easily.";
+      }
+
+      if (input.includes('css animation') || input.includes('ផ្លាស់ប្តូរ')) {
+        return "🎨 CSS 'animation' allows smooth animations. Example: @keyframes mymove {...}";
+      }
+
+      // ===== JavaScript Functions =====
+      if (input.includes('javascript function') || input.includes('មុខងារ js')) {
+        return "⚡ JavaScript functions perform tasks. Example: function hello() { alert('Hi'); }";
+      }
+
+      if (input.includes('js alert') || input.includes('បង្ហាញ alert')) {
+        return "⚡ 'alert()' shows a popup message. Example: alert('Hello World!');";
+      }
+
+      if (input.includes('js console') || input.includes('console.log')) {
+        return "⚡ 'console.log()' prints messages in browser console. Example: console.log('Hello');";
+      }
+
+      if (input.includes('js variable') || input.includes('អថេរ js')) {
+        return "⚡ Use 'let', 'const', or 'var' to declare variables. Example: let x = 10;";
+      }
+
+      if (input.includes('js loop') || input.includes('លុប js')) {
+        return "⚡ Loops repeat code. Example: for(let i=0;i<5;i++){ console.log(i); }";
+      }
+
+      if (input.includes('js if') || input.includes('ស្នើសុំ js')) {
+        return "⚡ 'if' statement checks condition. Example: if(x>0){ console.log('Positive'); }";
+      }
+
+      if (input.includes('js array') || input.includes('អារ៉េ js')) {
+        return "⚡ Arrays store multiple values. Example: let arr = [1,2,3];";
+      }
+
+      if (input.includes('js object') || input.includes('វត្ថុ js')) {
+        return "⚡ Objects store key-value pairs. Example: let person = {name:'Vibol', age:23};";
+      }
+
+      if (input.includes('js dom') || input.includes('dom js')) {
+        return "⚡ DOM lets JS interact with HTML elements. Example: document.getElementById('id')";
+      }
+
+      if (input.includes('js event') || input.includes('ព្រឹត្តិការណ៍ js')) {
+        return "⚡ JS events respond to user actions. Example: onclick, onmouseover, onsubmit.";
+      }
+
+      // ===== Student Daily Life =====
+      if (input.includes('homework') || input.includes('កិច្ចការផ្ទះ')) {
+        return "📝 Don’t forget to finish your homework before class tomorrow!";
+      }
+
+      if (input.includes('exam preparation') || input.includes('រៀបចំប្រឡង')) {
+        return "📚 Review your notes and practice coding exercises daily!";
+      }
+
+      if (input.includes('study break') || input.includes('សម្រាកសិក្សា')) {
+        return "☕ Take a 10-15 minute break after every 2 hours of study.";
+      }
+
+      if (input.includes('group project') || input.includes('គម្រោងក្រុម')) {
+        return "👥 Work closely with your teammates and assign tasks to each member.";
+      }
+
+      if (input.includes('presentation') || input.includes('បង្ហាញ')) {
+        return "📽️ Practice presenting clearly and confidently in front of the class.";
+      }
+
+      if (input.includes('quiz tips') || input.includes('គន្លឹះសំណួរ')) {
+        return "💡 Read carefully, manage your time, and check your answers!";
+      }
+
+      if (input.includes('exam tips') || input.includes('គន្លឹះប្រឡង')) {
+        return "🧠 Understand the concept, practice exercises, and stay calm!";
+      }
+
+      if (input.includes('study plan') || input.includes('ផែនការសិក្សា')) {
+        return "🗓️ Make a weekly plan to review lessons and finish assignments.";
+      }
+
+      if (input.includes('learn fast') || input.includes('រៀនលឿន')) {
+        return "⚡ Focus on one topic at a time, take notes, and practice coding.";
+      }
+
+      if (input.includes('review') || input.includes('ពិនិត្យឡើងវិញ')) {
+        return "🔄 Always review old lessons to remember concepts better.";
+      }
+      // ===== Coding Tips =====
+      if (input.includes('coding tip') || input.includes('គន្លឹះកូដ')) {
+        return "💡 Always break problems into small steps and test each part!";
+      }
+
+      if (input.includes('debug') || input.includes('កំណត់បញ្ហា')) {
+        return "🐞 Debugging tip: Use console.log and check variable values step by step.";
+      }
+
+      if (input.includes('best practice') || input.includes('ល្បីល្អ')) {
+        return "✅ Write clean code, use meaningful variable names, and comment your code!";
+      }
+
+      if (input.includes('optimize') || input.includes('បង្កើនប្រសិទ្ធភាព')) {
+        return "⚡ Optimize code by avoiding repetition and using functions wisely.";
+      }
+
+      if (input.includes('learn faster') || input.includes('រៀនលឿន')) {
+        return "📚 Focus, take notes, and practice daily. Consistency is key!";
+      }
+
+      if (input.includes('project idea') || input.includes('គំនិតគម្រោង')) {
+        return "💡 Build a personal website, todo list app, or small game!";
+      }
+
+      if (input.includes('real project') || input.includes('គម្រោងពិត')) {
+        return "🌐 Working on real projects helps you understand practical coding!";
+      }
+
+      // ===== Web Dev Fun Facts =====
+      if (input.includes('fun fact') || input.includes('ចំណេះដឹងសប្បាយ')) {
+        return "🎉 Did you know? The first website was published in 1991!";
+      }
+
+      if (input.includes('internet fact') || input.includes('អ៊ីនធឺណិត')) {
+        return "🌍 Over 5 billion people use the internet today!";
+      }
+
+      if (input.includes('programmer fact') || input.includes('ព័ត៌មានកម្មវិធី')) {
+        return "💻 The first programmer was Ada Lovelace in 1843!";
+      }
+
+      // ===== Student Daily Life =====
+      if (input.includes('stress') || input.includes('សំពាធ')) {
+        return "😌 Take a short break, breathe, and return to study with focus!";
+      }
+
+      if (input.includes('tired') || input.includes('នៅពេលនឿយ')) {
+        return "💤 Rest well! Coding is easier when your mind is fresh.";
+      }
+
+      if (input.includes('motivation') || input.includes('លើកទឹកចិត្ត')) {
+        return "🔥 Keep going! Every small step in coding is progress!";
+      }
+
+      if (input.includes('sleep time') || input.includes('ម៉ោងគេង')) {
+        return "🌙 Make sure to sleep at least 7-8 hours for a fresh mind!";
+      }
+
+      if (input.includes('healthy study') || input.includes('សុខភាពសិក្សា')) {
+        return "🥗 Eat well, drink water, and take short exercise breaks while studying.";
+      }
+
+      if (input.includes('study group') || input.includes('ក្រុមសិក្សា')) {
+        return "👥 Study groups help you learn faster and understand concepts better!";
+      }
+
+      if (input.includes('ask teacher') || input.includes('សួរគ្រូ')) {
+        return "🗣️ Don’t hesitate to ask teachers if you are confused!";
+      }
+
+      if (input.includes('online resources') || input.includes('ធនធានអនឡាញ')) {
+        return "🌐 Use online tutorials, YouTube, and coding platforms like FreeCodeCamp.";
+      }
+
+      if (input.includes('practice daily') || input.includes('ហាត់រៀនរៀងរាល់ថ្ងៃ')) {
+        return "🖊️ Practice coding daily even if only 30 minutes. Consistency matters!";
+      }
+
+      if (input.includes('learn html css js') || input.includes('រៀន html css js')) {
+        return "🌟 Start with HTML, then CSS, and finally JavaScript for full web development!";
+      }
+
+      // ===== Fun & Humor =====
+      if (input.includes('joke') || input.includes('កំប្លែង')) {
+        return "😂 Why do programmers prefer dark mode? Because light attracts bugs!";
+      }
+
+      if (input.includes('funny code') || input.includes('កូដសើច')) {
+        return "💻 A programmer’s spouse tells him: 'Go to bed!' He replies: 'I’m in a loop!'";
+      }
+
+      if (input.includes('stress relief') || input.includes('កំលោះសំពាធ')) {
+        return "😌 Take a short walk, stretch, or listen to music!";
+      }
+
+      if (input.includes('coffee') || input.includes('កាហ្វេ')) {
+        return "☕ Many coders love coffee while coding late at night!";
+      }
+
+      if (input.includes('tea') || input.includes('តែ')) {
+        return "🍵 Tea is also great for focus and calmness while coding.";
+      }
+
+      // ===== Daily Conversation =====
+      if (input.includes('how are you') || input.includes('សុខសប្បាយទេ')) {
+        return "😊 I’m good! Ready to help you learn coding. How about you?";
+      }
+
+      if (input.includes('what is your name') || input.includes('អ្នកឈ្មោះអ្វី')) {
+        return "🤖 I’m Mitch Academy Bot, your coding assistant!";
+      }
+
+      if (input.includes('hello') || input.includes('hi') || input.includes('សួស្តី')) {
+        return "👋 Hello! Ready to learn coding today?";
+      }
+
+      if (input.includes('bye') || input.includes('លាហើយ')) {
+        return "👋 Goodbye! Keep coding and see you next time!";
+      }
+
+      if (input.includes('thank you') || input.includes('អរគុណ')) {
+        return "😊 You’re welcome! Happy to help you learn!";
+      }
+
+      if (input.includes('good morning') || input.includes('អរុណសួស្តី')) {
+        return "🌅 Good morning! Let’s code something new today!";
+      }
+
+      if (input.includes('good night') || input.includes('រាត្រីសួស្តី')) {
+        return "🌙 Good night! Review lessons tomorrow!";
+      }
+      if (input.includes('motivation') || input.includes('លើកទឹកចិត្ត')) {
+        return "🔥 Keep going! Every small step you take in learning coding counts!";
+      }
+
+      if (input.includes('inspire me') || input.includes('លើកទឹកចិត្តខ្ញុំ')) {
+        return "💡 Believe in yourself! Practice daily and you will improve!";
+      }
+
+      if (input.includes('don’t give up') || input.includes('កុំបោះបង់')) {
+        return "💪 Challenges make you stronger. Keep trying, success is near!";
+      }
+
+      if (input.includes('stay focused') || input.includes('ផ្ដោតចិត្ត')) {
+        return "🎯 Focus on one task at a time and avoid distractions!";
+      }
+
+      if (input.includes('positive thinking') || input.includes('គិតវិជ្ជមាន')) {
+        return "🌟 Think positive, learn from mistakes, and keep moving forward!";
+      }
+
+      if (input.includes('hard work') || input.includes('ការខិតខំ')) {
+        return "🏆 Hard work beats talent when talent doesn’t work hard!";
+      }
+
+      if (input.includes('learning quote') || input.includes('ពាក្យរៀន')) {
+        return "📚 “The expert in anything was once a beginner.” Keep learning!";
+      }
+
+      if (input.includes('keep going') || input.includes('បន្តទៅ')) {
+        return "🚀 Don’t stop now! Each line of code makes you better!";
+      }
+
+      if (input.includes('challenge') || input.includes('ការប្រឈម')) {
+        return "💡 Every challenge is an opportunity to learn and grow!";
+      }
+
+      if (input.includes('success') || input.includes('ជោគជ័យ')) {
+        return "🌟 Success comes to those who work hard and stay persistent!";
+      }
+      // ===== Motivation / Inspiration =====
+      if (input.includes('motivation tip') || input.includes('គន្លឹះលើកទឹកចិត្ត')) {
+        return "🔥 Set small goals every day and celebrate your progress!";
+      }
+
+      if (input.includes('study motivation') || input.includes('លើកទឹកចិត្តសិក្សា')) {
+        return "📚 Remember: Consistent practice beats cramming!";
+      }
+
+      if (input.includes('productivity tip') || input.includes('គន្លឹះផលិតភាព')) {
+        return "⚡ Use the Pomodoro technique: 25 mins study, 5 mins break!";
+      }
+
+      if (input.includes('stay motivated') || input.includes('រក្សាលក្ខណៈ')) {
+        return "🌟 Keep a positive mindset and track your progress daily!";
+      }
+
+      if (input.includes('never give up') || input.includes('កុំបោះបង់')) {
+        return "💪 Every failure is a lesson. Learn and try again!";
+      }
+
+      if (input.includes('learning quote') || input.includes('ពាក្យរៀន')) {
+        return "🧠 “Practice makes progress, not perfection.”";
+      }
+
+      if (input.includes('goal setting') || input.includes('កំណត់គោលដៅ')) {
+        return "🎯 Write down your goals and break them into small actionable steps!";
+      }
+
+      if (input.includes('focus') || input.includes('ផ្ដោតចិត្ត')) {
+        return "🔎 Eliminate distractions and focus on one topic at a time!";
+      }
+
+      if (input.includes('hard work') || input.includes('ខិតខំ')) {
+        return "🏆 Hard work + patience = success!";
+      }
+
+      if (input.includes('confidence') || input.includes('ទំនុកចិត្ត')) {
+        return "💡 Believe in yourself. Confidence comes with practice!";
+      }
+
+      // ===== Learning Tips =====
+      if (input.includes('learn fast') || input.includes('រៀនលឿន')) {
+        return "⚡ Learn actively: code along, take notes, and ask questions!";
+      }
+
+      if (input.includes('study tips') || input.includes('គន្លឹះសិក្សា')) {
+        return "📝 Review lessons regularly, summarize concepts, and practice coding daily!";
+      }
+
+      if (input.includes('time management') || input.includes('គ្រប់គ្រងពេលវេលា')) {
+        return "⏰ Plan your day: allocate fixed hours for study, coding, and breaks!";
+      }
+
+      if (input.includes('practice coding') || input.includes('ហាត់កូដ')) {
+        return "💻 Build small projects every day to strengthen your skills!";
+      }
+
+      if (input.includes('revision') || input.includes('ពិនិត្យឡើងវិញ')) {
+        return "🔄 Revisit old lessons to reinforce memory and understanding!";
+      }
+
+      if (input.includes('learning habit') || input.includes('ទម្លាប់សិក្សា')) {
+        return "📚 Consistency is key! Even 30 minutes per day is better than none!";
+      }
+
+      if (input.includes('study smart') || input.includes('សិក្សាឆ្លាត')) {
+        return "🧠 Focus on understanding concepts, not just memorizing!";
+      }
+
+      if (input.includes('daily learning') || input.includes('សិក្សារៀងរាល់ថ្ងៃ')) {
+        return "🌟 Make it a habit: learn, code, review, repeat!";
+      }
+
+      if (input.includes('exam preparation') || input.includes('រៀបចំប្រឡង')) {
+        return "📝 Practice past exercises, test yourself, and review weak points!";
+      }
+
+      if (input.includes('motivation for students') || input.includes('លើកទឹកចិត្តសិស្ស')) {
+        return "💡 Every small step in learning counts. Keep going!";
+      }
+
+      // ===== Inspiration / Life =====
+      if (input.includes('inspiration') || input.includes('ការលើកទឹកចិត្តជីវិត')) {
+        return "🌟 “Your limitation—it’s only your imagination. Push your limits!”";
+      }
+
+      if (input.includes('success tips') || input.includes('គន្លឹះជោគជ័យ')) {
+        return "🏆 Focus, work hard, stay consistent, and never stop learning!";
+      }
+
+      if (input.includes('career motivation') || input.includes('លើកទឹកចិត្តអាជីព')) {
+        return "🚀 Start learning today, your future self will thank you!";
+      }
+
+      if (input.includes('daily motivation') || input.includes('លើកទឹកចិត្តប្រចាំថ្ងៃ')) {
+        return "☀️ Every morning is a new opportunity to learn and grow!";
+      }
+
+      if (input.includes('mindset') || input.includes('គំនិត')) {
+        return "🧠 Growth mindset: Challenges are opportunities to learn!";
+      }
+
+      if (input.includes('overcome failure') || input.includes('ឆ្លងកាត់ការបរាជ័យ')) {
+        return "💪 Failure is just feedback. Learn and improve from it!";
+      }
+
+      if (input.includes('self improvement') || input.includes('បង្កើនខ្លួនឯង')) {
+        return "🌱 Always try to be 1% better every day!";
+      }
+
+      if (input.includes('productivity') || input.includes('ផលិតភាព')) {
+        return "⚡ Prioritize tasks, remove distractions, and take breaks wisely!";
+      }
+
+      if (input.includes('goal reminder') || input.includes('រំលឹកគោលដៅ')) {
+        return "🎯 Keep your goals visible and review them every day!";
+      }
+
+      if (input.includes('success mindset') || input.includes('គំនិតជោគជ័យ')) {
+        return "🌟 Believe you can, work for it, and success will follow!";
+      }
+      // ===== Coding Exercises =====
+      if (input.includes('exercise html') || input.includes('លំហាត់ html')) {
+        return "📝 Try creating a simple webpage with <h1>, <p>, and <img> tags!";
+      }
+
+      if (input.includes('exercise css') || input.includes('លំហាត់ css')) {
+        return "📝 Style your HTML page: change colors, fonts, margins, and padding!";
+      }
+
+      if (input.includes('exercise js') || input.includes('លំហាត់ js')) {
+        return "📝 Create a JS function that shows an alert when a button is clicked!";
+      }
+
+      if (input.includes('exercise dom') || input.includes('លំហាត់ dom')) {
+        return "📝 Use document.getElementById() to change text on your webpage!";
+      }
+
+      if (input.includes('exercise array') || input.includes('លំហាត់ array')) {
+        return "📝 Create an array of 5 items and print them using a for loop in JS!";
+      }
+
+      if (input.includes('exercise loop') || input.includes('លំហាត់ loop')) {
+        return "📝 Write a for loop to print numbers 1 to 10 in the console!";
+      }
+
+      if (input.includes('exercise if') || input.includes('លំហាត់ if')) {
+        return "📝 Write an if statement to check if a number is positive or negative!";
+      }
+
+      if (input.includes('exercise function') || input.includes('លំហាត់ function')) {
+        return "📝 Create a JS function that takes 2 numbers and returns their sum!";
+      }
+
+      if (input.includes('exercise event') || input.includes('លំហាត់ event')) {
+        return "📝 Add an onclick event to a button that changes its color when clicked!";
+      }
+
+      if (input.includes('exercise object') || input.includes('លំហាត់ object')) {
+        return "📝 Create an object representing a student with name, age, and course properties!";
+      }
+
+      // ===== Project Ideas =====
+      if (input.includes('project idea') || input.includes('គំនិតគម្រោង')) {
+        return "💡 Build a personal portfolio website or a simple todo list app!";
+      }
+
+      if (input.includes('mini project') || input.includes('គម្រោងតូច')) {
+        return "💡 Create a calculator, quiz app, or interactive gallery!";
+      }
+
+      if (input.includes('web project') || input.includes('គម្រោងវេបសាយ')) {
+        return "🌐 Build a responsive website using HTML, CSS, and JS!";
+      }
+
+      if (input.includes('js project') || input.includes('គម្រោង js')) {
+        return "💻 Make a simple game like Rock-Paper-Scissors using JavaScript!";
+      }
+
+      if (input.includes('team project') || input.includes('គម្រោងក្រុម')) {
+        return "👥 Collaborate with friends to build a small web app together!";
+      }
+
+      // ===== JavaScript Concepts =====
+      if (input.includes('js variable') || input.includes('អថេរ js')) {
+        return "⚡ Use let, const, or var to store values. Example: let name = 'Vibol';";
+      }
+
+      if (input.includes('js function') || input.includes('មុខងារ js')) {
+        return "⚡ Functions perform tasks. Example: function greet(){ alert('Hi'); }";
+      }
+
+      if (input.includes('js array') || input.includes('អារ៉េ js')) {
+        return "⚡ Arrays store multiple values. Example: let arr = [1,2,3];";
+      }
+
+      if (input.includes('js object') || input.includes('វត្ថុ js')) {
+        return "⚡ Objects store key-value pairs. Example: let student = {name:'Vibol', age:20};";
+      }
+
+      if (input.includes('js loop') || input.includes('លុប js')) {
+        return "⚡ Loops repeat code. Example: for(let i=0;i<5;i++){ console.log(i); }";
+      }
+
+      if (input.includes('js if') || input.includes('ស្នើសុំ js')) {
+        return "⚡ If statements check conditions. Example: if(x>0){ console.log('Positive'); }";
+      }
+
+      if (input.includes('js dom') || input.includes('dom js')) {
+        return "⚡ DOM allows JS to interact with HTML. Example: document.getElementById('id')";
+      }
+
+      if (input.includes('js event') || input.includes('ព្រឹត្តិការណ៍ js')) {
+        return "⚡ Events respond to actions. Example: onclick, onmouseover, onsubmit";
+      }
+
+      if (input.includes('js console') || input.includes('console log')) {
+        return "⚡ console.log() prints messages in the browser console.";
+      }
+
+      if (input.includes('js alert') || input.includes('បង្ហាញ alert')) {
+        return "⚡ alert('Hello!') shows a popup message to the user!";
+      }
+
+      // ===== HTML/CSS Concepts =====
+      if (input.includes('html tag') || input.includes('តួអក្សរ html')) {
+        return "📘 HTML tags structure content: <h1>, <p>, <div>, <img>, <a> etc.";
+      }
+
+      if (input.includes('css property') || input.includes('លក្ខណៈ css')) {
+        return "🎨 CSS properties style elements: color, background, margin, padding, font-size, etc.";
+      }
+
+      if (input.includes('responsive') || input.includes('ទំនាក់ទំនង')) {
+        return "🌐 Responsive design adapts websites for mobile, tablet, and desktop devices!";
+      }
+
+      if (input.includes('flexbox') || input.includes('flex')) {
+        return "🎨 CSS Flexbox helps create flexible layouts easily!";
+      }
+
+      if (input.includes('grid') || input.includes('css grid')) {
+        return "🎨 CSS Grid helps build 2D layouts with rows and columns!";
+      }
+      // ===== Advanced JavaScript Concepts =====
+      if (input.includes('js closure') || input.includes('closure js')) {
+        return "⚡ A closure is a function that remembers variables from its outer scope even after the outer function finishes.";
+      }
+
+      if (input.includes('js promise') || input.includes('promise js')) {
+        return "⚡ A Promise represents an async operation. Example: fetch(url).then(...).catch(...);";
+      }
+
+      if (input.includes('js async') || input.includes('async js')) {
+        return "⚡ async/await makes asynchronous code easier to read. Example: async function fetchData(){...}";
+      }
+
+      if (input.includes('js callback') || input.includes('callback js')) {
+        return "⚡ A callback is a function passed as an argument to another function, executed later.";
+      }
+
+      if (input.includes('js event loop') || input.includes('event loop js')) {
+        return "⚡ Event loop handles async operations in JavaScript, managing the call stack and task queue.";
+      }
+
+      if (input.includes('js hoisting') || input.includes('hoisting js')) {
+        return "⚡ Hoisting moves variable and function declarations to the top of their scope before execution.";
+      }
+
+      if (input.includes('js this') || input.includes('this js')) {
+        return "⚡ 'this' refers to the object that is executing the current function.";
+      }
+
+      if (input.includes('js prototype') || input.includes('prototype js')) {
+        return "⚡ Prototypes allow objects to inherit methods and properties in JavaScript.";
+      }
+
+      if (input.includes('js module') || input.includes('module js')) {
+        return "⚡ Modules allow splitting code into separate files and exporting/importing functions or variables.";
+      }
+
+      if (input.includes('js arrow function') || input.includes('arrow function js')) {
+        return "⚡ Arrow functions are a shorter syntax for writing functions. Example: const sum = (a,b)=>a+b;";
+      }
+
+      // ===== Debugging Tips =====
+      if (input.includes('debugging') || input.includes('កំណត់បញ្ហា')) {
+        return "🐞 Use console.log(), breakpoints, and carefully read errors to debug code.";
+      }
+
+      if (input.includes('error') || input.includes('កំហុស')) {
+        return "⚡ Read the error message carefully and check the line number where it occurs.";
+      }
+
+      if (input.includes('fix bug') || input.includes('ជួសជុលកំហុស')) {
+        return "🔧 Step by step: isolate the problem, check variables, and test small code pieces.";
+      }
+
+      // ===== Web Development Best Practices =====
+      if (input.includes('best practice') || input.includes('ល្បីល្អ')) {
+        return "✅ Write clean, readable code with comments, proper indentation, and meaningful variable names.";
+      }
+
+      if (input.includes('responsive design') || input.includes('រចនាបថត្រាសកម្ម')) {
+        return "🌐 Test your website on multiple devices and screen sizes to ensure responsiveness.";
+      }
+
+      if (input.includes('optimization') || input.includes('បង្កើនប្រសិទ្ធភាព')) {
+        return "⚡ Optimize images, minimize CSS/JS, and use caching for faster websites.";
+      }
+
+      if (input.includes('seo') || input.includes('seo')) {
+        return "🔍 Use proper HTML tags, meta descriptions, and headings to improve search engine ranking.";
+      }
+
+      if (input.includes('security') || input.includes('សុវត្ថិភាព')) {
+        return "🔒 Always validate user input and protect against XSS/SQL injection attacks.";
+      }
+
+      // ===== Interview Questions =====
+      if (input.includes('js interview') || input.includes('សំណួរ interview js')) {
+        return "💡 Common JS interview questions: closures, async/await, prototype, event loop, hoisting.";
+      }
+
+      if (input.includes('html interview') || input.includes('សំណួរ interview html')) {
+        return "💡 Common HTML interview questions: semantic tags, forms, media tags, accessibility.";
+      }
+
+      if (input.includes('css interview') || input.includes('សំណួរ interview css')) {
+        return "💡 Common CSS interview questions: Flexbox, Grid, selectors, transitions, responsive design.";
+      }
+
+      if (input.includes('coding interview') || input.includes('សំណួរ interview coding')) {
+        return "💡 Practice problem-solving, arrays, loops, recursion, and algorithm challenges.";
+      }
+
+      // ===== Career Advice =====
+      if (input.includes('career') || input.includes('អាជីព')) {
+        return "🚀 Keep learning new skills, build projects, and network with other developers!";
+      }
+
+      if (input.includes('freelance') || input.includes('ឯករាជ្យ')) {
+        return "💼 Freelancing tips: build portfolio, learn client communication, and manage time well!";
+      }
+
+      if (input.includes('job tips') || input.includes('គន្លឹះការងារ')) {
+        return "📝 Prepare your resume, practice coding challenges, and learn version control like Git!";
+      }
+
+      if (input.includes('portfolio') || input.includes('ផត្វូលីយោ')) {
+        return "🌐 Showcase your projects, skills, and achievements on a personal website!";
+      }
+
+      if (input.includes('developer skills') || input.includes('ជំនាញអ្នកអភិវឌ្ឍន៍')) {
+        return "💻 Learn HTML, CSS, JS, frameworks, version control, and problem-solving!";
+      }
+            // ===== PHP Basics =====
+      if (input.includes('php variable') || input.includes('អថេរ php')) {
+        return "💻 PHP variables start with $ sign. Example: $name = 'Vibol';";
+      }
+
+      if (input.includes('php function') || input.includes('មុខងារ php')) {
+        return "💻 Define PHP functions using function keyword. Example: function sum($a,$b){ return $a+$b; }";
+      }
+
+      if (input.includes('php array') || input.includes('អារ៉េ php')) {
+        return "💻 PHP arrays store multiple values. Example: $arr = array(1,2,3);";
+      }
+
+      if (input.includes('php loop') || input.includes('លុប php')) {
+        return "💻 PHP loops: for, while, foreach. Example: foreach($arr as $item){ echo $item; }";
+      }
+
+      if (input.includes('php if') || input.includes('ស្នើសុំ php')) {
+        return "💻 PHP if statements: if($x>0){ echo 'Positive'; }";
+      }
+
+      if (input.includes('php include') || input.includes('include php')) {
+        return "💻 include() and require() are used to include files in PHP.";
+      }
+
+      // ===== Database (MySQL) =====
+      if (input.includes('mysql connect') || input.includes('ភ្ជាប់ mysql')) {
+        return "🗄️ Use mysqli_connect('host','user','password','database') to connect PHP to MySQL.";
+      }
+
+      if (input.includes('mysql query') || input.includes('ស្នើសុំ mysql')) {
+        return "🗄️ Use mysqli_query($conn, $sql) to execute SQL queries in PHP.";
+      }
+
+      if (input.includes('mysql fetch') || input.includes('យកទិន្នន័យ mysql')) {
+        return "🗄️ Use mysqli_fetch_assoc() or mysqli_fetch_array() to get results from a query.";
+      }
+
+      if (input.includes('sql insert') || input.includes('បញ្ចូលទិន្នន័យ')) {
+        return "🗄️ Example: INSERT INTO users(name,email) VALUES('Vibol','vibol@gmail.com');";
+      }
+
+      if (input.includes('sql select') || input.includes('ជ្រើសទិន្នន័យ')) {
+        return "🗄️ Example: SELECT * FROM users WHERE age>18;";
+      }
+
+      if (input.includes('sql update') || input.includes('បច្ចុប្បន្នភាព')) {
+        return "🗄️ Example: UPDATE users SET age=21 WHERE name='Vibol';";
+      }
+
+      if (input.includes('sql delete') || input.includes('លុបទិន្នន័យ')) {
+        return "🗄️ Example: DELETE FROM users WHERE id=1;";
+      }
+
+      // ===== Backend & API =====
+      if (input.includes('api') || input.includes('កម្មវិធីផ្គត់ផ្គង់')) {
+        return "🌐 API allows apps to communicate. Example: REST API using GET/POST requests.";
+      }
+
+      if (input.includes('rest api') || input.includes('rest')) {
+        return "🌐 REST API uses HTTP methods: GET, POST, PUT, DELETE to manage resources.";
+      }
+
+      if (input.includes('backend') || input.includes('ផ្នែកក្រោយ')) {
+        return "💻 Backend handles server-side logic, databases, and APIs.";
+      }
+
+      if (input.includes('server') || input.includes('ម៉ាស៊ីនបម្រើ')) {
+        return "💻 Server stores website files, runs backend code, and handles requests.";
+      }
+
+      if (input.includes('json') || input.includes('data json')) {
+        return "📄 JSON is a lightweight format to send data. Example: {\"name\":\"Vibol\", \"age\":23}";
+      }
+
+      if (input.includes('ajax') || input.includes('ajax')) {
+        return "⚡ AJAX allows JS to communicate with backend without reloading the page.";
+      }
+
+      // ===== Security =====
+      if (input.includes('security') || input.includes('សុវត្ថិភាព')) {
+        return "🔒 Validate user input, escape output, and protect against XSS/SQL injections!";
+      }
+
+      if (input.includes('password hash') || input.includes('hash ពាក្យសម្ងាត់')) {
+        return "🔒 Use password_hash() in PHP to securely store passwords.";
+      }
+
+      if (input.includes('csrf') || input.includes('csrf')) {
+        return "🔒 CSRF token prevents cross-site request forgery attacks.";
+      }
+
+      if (input.includes('xss') || input.includes('xss')) {
+        return "🔒 Escape user input to prevent cross-site scripting attacks.";
+      }
+
+      if (input.includes('sql injection') || input.includes('sql injection')) {
+        return "🔒 Use prepared statements or ORM to prevent SQL injection!";
+      }
+
+      // ===== Advanced Web Dev Topics =====
+      if (input.includes('mvc') || input.includes('mvc')) {
+        return "💻 MVC (Model-View-Controller) separates logic, presentation, and data for better code structure.";
+      }
+
+      if (input.includes('oop') || input.includes('oop')) {
+        return "💻 Object-Oriented Programming: organize code using classes, objects, and inheritance.";
+      }
+
+      if (input.includes('restful') || input.includes('restful')) {
+        return "🌐 RESTful API follows standard principles for creating web services.";
+      }
+
+      if (input.includes('full stack') || input.includes('full stack')) {
+        return "🌐 Full-stack development involves both frontend (HTML/CSS/JS) and backend (PHP/Node/DB) skills.";
+      }
+
+      if (input.includes('framework') || input.includes('framework')) {
+        return "💻 Popular frameworks: Laravel (PHP), Express (Node.js), React (JS), Vue (JS).";
+      }
+      if(input.includes('full stack workflow') || input.includes('flow full stack')){
+        return "🌐 Full-stack workflow: 1) Design frontend 2) Create backend 3) Connect to database 4) Test API 5) Deploy.";
+      }
+      if(input.includes('frontend') || input.includes('ផ្នែកមុខ')){
+        return "💻 Frontend includes HTML, CSS, JavaScript, and frameworks like React or Vue.";
+      }
+      if(input.includes('backend') || input.includes('ផ្នែកក្រោយ')){
+        return "💻 Backend includes server-side code, databases, API endpoints, authentication, and business logic.";
+      }
+      if(input.includes('database design') || input.includes('ការរចនាឃ្លាំងទិន្នន័យ')){
+        return "🗄️ Database design: Create tables, define relationships, set indexes, normalize data.";
+      }
+      if(input.includes('deployment') || input.includes('ដាក់បង្ហាញ')){
+        return "🚀 Deployment: Upload files to server or use platforms like Heroku, Netlify, or Vercel.";
+      }
+      if(input.includes('testing') || input.includes('ការតេស្ត')){
+        return "🧪 Test your application thoroughly: unit test, integration test, and manual testing.";
+      }
+      if(input.includes('api connection') || input.includes('ភ្ជាប់ api')){
+        return "⚡ Connect frontend and backend via API endpoints using fetch/AJAX or axios.";
+      }
+      if(input.includes('authentication') || input.includes('សម្គាល់អ្នកប្រើប្រាស់')){
+        return "🔐 Authentication: Implement login, register, session management, or JWT.";
+      }
+      if(input.includes('git') || input.includes('version control')){
+        return "🗂️ Git is used to track changes in code. Commands: git init, git add, git commit, git push, git pull.";
+      }
+      if(input.includes('branch') || input.includes('git branch')){
+        return "🌿 Branching allows parallel development. Example: git branch feature1; git checkout feature1;";
+      }
+      if(input.includes('merge') || input.includes('git merge')){
+        return "🔀 Merge combines branches. Example: git checkout main; git merge feature1;";
+      }
+      if(input.includes('clone') || input.includes('git clone')){
+        return "📥 Clone a repository: git clone <repo-url>";
+      }
+      if(input.includes('pull') || input.includes('git pull')){
+        return "⬇️ Pull updates from remote repository: git pull origin main";
+      }
+      if(input.includes('push') || input.includes('git push')){
+        return "⬆️ Push local commits to remote repository: git push origin main";
+      }
+      if(input.includes('commit') || input.includes('git commit')){
+        return "📝 Commit changes with a message: git commit -m 'your message'";
+      }
+      if(input.includes('debug js') || input.includes('កំណត់បញ្ហា js')){
+        return "🐞 Debug JS with console.log(), breakpoints, browser DevTools, and step-by-step testing.";
+      }
+      if(input.includes('debug php') || input.includes('កំណត់បញ្ហា php')){
+        return "🐞 Debug PHP by echo statements, error_reporting(E_ALL), and Xdebug.";
+      }
+      if(input.includes('debug css') || input.includes('កំណត់បញ្ហា css')){
+        return "🎨 Debug CSS using DevTools, check selectors, box model, and applied styles.";
+      }
+      if(input.includes('debug html') || input.includes('កំណត់បញ្ហា html')){
+        return "📝 Debug HTML by inspecting DOM, checking nesting, and validating code.";
+      }
+      if(input.includes('common bugs') || input.includes('កំហុសទូទៅ')){
+        return "⚠️ Common bugs: typo, missing semicolon, wrong selector, wrong path, uninitialized variable.";
+      }
+      if(input.includes('hosting') || input.includes('ផ្ទះបណ្ដាញ')){
+        return "🌐 Hosting: Place your website on servers to make it accessible online.";
+      }
+      if(input.includes('netlify') || input.includes('deploy netlify')){
+        return "🚀 Netlify: Free hosting for static sites. Drag & drop or connect Git repo.";
+      }
+      if(input.includes('vercel') || input.includes('deploy vercel')){
+        return "🚀 Vercel: Hosting for static & serverless sites, ideal for Next.js.";
+      }
+      if(input.includes('heroku') || input.includes('deploy heroku')){
+        return "🚀 Heroku: Hosting backend apps with free & paid tiers.";
+      }
+      if(input.includes('ftp') || input.includes('upload ftp')){
+        return "📂 Upload files via FTP/SFTP to your server using FileZilla or terminal.";
+      }
+      if(input.includes('web security') || input.includes('សុវត្ថិភាពវេបសាយ')){
+        return "🔒 Validate inputs, escape output, use HTTPS, and secure authentication.";
+      }
+      if(input.includes('sql injection') || input.includes('sql injection')){
+        return "🛡️ Use prepared statements and ORM to prevent SQL injection attacks.";
+      }
+      if(input.includes('xss') || input.includes('cross site script')){
+        return "🛡️ Escape user input to prevent XSS attacks.";
+      }
+      if(input.includes('csrf') || input.includes('csrf token')){
+        return "🛡️ CSRF tokens prevent unauthorized requests from other sites.";
+      }
+      if(input.includes('password security') || input.includes('ពាក្យសម្ងាត់')){
+        return "🔐 Hash passwords using bcrypt or password_hash() before storing in database.";
+      }
+      if(input.includes('project challenge') || input.includes('គម្រោងតែងសាកល្បង')){
+        return "💡 Challenge: Build a weather app fetching data from OpenWeatherMap API!";
+      }
+      if(input.includes('todo app') || input.includes('todo project')){
+        return "💡 Challenge: Create a todo app with add, edit, delete, and filter features.";
+      }
+      if(input.includes('portfolio project') || input.includes('គម្រោងផត្វូលីយោ')){
+        return "💡 Challenge: Build your personal portfolio with projects and contact form.";
+      }
+      if(input.includes('quiz app') || input.includes('quiz project')){
+        return "💡 Challenge: Make a quiz app with multiple-choice questions and score tracking.";
+      }
+      if(input.includes('game project') || input.includes('game coding')){
+        return "💡 Challenge: Build a simple JavaScript game like Rock-Paper-Scissors.";
+      }
+      if(input.includes('clean code') || input.includes('កូដស្អាត')){
+        return "✅ Use meaningful variable names, proper indentation, and comments.";
+      }
+      if(input.includes('refactor') || input.includes('refactor code')){
+        return "🔧 Refactor code to remove duplication, improve readability, and maintainability.";
+      }
+      if(input.includes('optimize code') || input.includes('បង្កើនប្រសិទ្ធភាពកូដ')){
+        return "⚡ Optimize loops, avoid unnecessary computations, and use efficient algorithms.";
+      }
+      if(input.includes('readable code') || input.includes('កូដងាយអាន')){
+        return "📝 Write code as if someone else will maintain it tomorrow.";
+      }
+      if(input.includes('modular code') || input.includes('កូដម៉ូឌុល')){
+        return "🧩 Break code into reusable functions or modules.";
+      }
+      if(input.includes('career advice') || input.includes('ដំណឹងអាជីព')){
+        return "🚀 Build projects, practice problem-solving, and keep learning.";
+      }
+      if(input.includes('interview tips') || input.includes('គន្លឹះសម្ភាសន៍')){
+        return "💡 Review common interview questions, data structures, and algorithms.";
+      }
+      if(input.includes('resume tips') || input.includes('resume')){
+        return "📝 Highlight projects, skills, and experience relevant to the job.";
+      }
+      if(input.includes('freelance tips') || input.includes('ធ្វើឯករាជ្យ')){
+        return "💼 Build portfolio, communicate clearly with clients, and manage your time.";
+      }
+      if(input.includes('job search') || input.includes('ស្វែងរកការងារ')){
+        return "🔍 Use LinkedIn, GitHub, and developer communities to find opportunities.";
+      }
+      if(input.includes('fun fact') || input.includes('ចំណេះដឹងសប្បាយ')){
+        return "🎉 Did you know? The first website was published in 1991!";
+      }
+      if(input.includes('joke') || input.includes('កំប្លែង')){
+        return "😂 Why do programmers prefer dark mode? Because light attracts bugs!";
+      }
+      if(input.includes('motivation') || input.includes('លើកទឹកចិត្ត')){
+        return "🔥 Keep going! Every small step in coding counts!";
+      }
+      if(input.includes('study tips') || input.includes('គន្លឹះសិក្សា')){
+        return "📚 Practice daily, review lessons, and build small projects.";
+      }
+      if(input.includes('healthy habit') || input.includes('ទម្លាប់សុខភាព')){
+        return "🥗 Eat well, sleep enough, and take breaks to stay productive!";
+      }
+      if(input.includes('greeting') || input.includes('សួស្តី')){
+        return "👋 Hello! Ready to learn coding today?";
+      }
+      if(input.includes('goodbye') || input.includes('លាហើយ')){
+        return "👋 Goodbye! Keep coding and see you next time!";
+      }
       
+      // ===== DEFAULT =====
+      return "🤔 Sorry, I don’t understand that yet. Try asking about teachers, courses, or programming topics.";
     }
     
-
+    // ===== ENTER KEY =====
     userInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') sendMessage();
     });
