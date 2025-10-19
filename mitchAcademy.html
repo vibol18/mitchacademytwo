@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HealthySteps — Animated Template</title>
+
+<style>
+:root{
+  --bg:#f6f8fb; --card:#fff; --accent:#0b74df; --muted:#666;
+  --radius:12px; --shadow:0 6px 18px rgba(12,20,40,0.08);
+  --max-width:1100px;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{
+  margin:0; font-family:"Poppins",system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:linear-gradient(180deg,#f8fbff,var(--bg)); color:#111; line-height:1.4;
+  overflow-x:hidden;
+}
+
+/* ====== HEADER ====== */
+.container{max-width:var(--max-width); margin:0 auto; padding:28px;}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;position:sticky;top:0;background:#fff;z-index:99;box-shadow:0 4px 14px rgba(0,0,0,0.06);animation:slideDown .8s ease;}
+@keyframes slideDown{0%{transform:translateY(-60px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
+.logo{font-weight:700;color:var(--accent);font-size:20px;letter-spacing:.5px}
+nav{display:flex;gap:14px;align-items:center;}
+nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;position:relative}
+nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--accent);transition:.3s}
+nav a:hover::after{width:100%}
+.btn{background:var(--accent);color:#fff;border:none;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700;transition:all .3s ease;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 12px rgba(0,0,0,0.15);}
+
+/* ====== HERO ====== */
+.hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin:28px 0;}
+.hero-card{background:var(--card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);opacity:0;animation:fadeUp .8s forwards;}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(40px);}100%{opacity:1;transform:translateY(0);}}
+.hero-card:nth-child(1){animation-delay:.2s;}
+.hero-card:nth-child(2){animation-delay:.5s;}
+h1{margin:0 0 10px;font-size:28px;}
+p.lead{margin:0 0 16px;color:var(--muted);}
+.cta{display:inline-block;background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;transition:.3s;}
+.cta:hover{background:#095bb2;box-shadow:0 6px 14px rgba(11,116,223,0.4);transform:translateY(-2px);}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+.feature{background:linear-gradient(180deg,#fff,#f8faff);border-radius:10px;padding:12px;box-shadow:0 3px 10px rgba(12,20,40,0.04);font-size:14px;opacity:0;animation:fadeUp .7s forwards;}
+.feature:nth-child(1){animation-delay:.7s;}
+.feature:nth-child(2){animation-delay:.9s;}
+.feature:nth-child(3){animation-delay:1.1s;}
+
+/* ====== SHOP ====== */
+.shop{margin:28px 0;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+.product{background:var(--card);border-radius:12px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(40px);animation:fadeUp .7s forwards;}
+.product img{width:100%;height:160px;object-fit:cover;border-radius:8px;transition:.3s;}
+.product:hover img{transform:scale(1.05);}
+.product h4{margin:0;font-size:16px;}
+.price{font-weight:700;}
+
+/* ====== FOOTER ====== */
+footer{margin-top:40px;color:var(--muted);padding:24px 0;border-top:1px solid #e8eef8;text-align:center;opacity:0;animation:fadeUp 1s .8s forwards;}
+
+/* ====== CART DRAWER ====== */
+.cart-btn{position:relative;}
+.cart-count{position:absolute;right:-8px;top:-8px;background:#ff5252;color:#fff;border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:12px;}
+.drawer{position:fixed;right:18px;top:70px;width:360px;max-width:94%;background:var(--card);border-radius:12px;box-shadow:0 20px 60px rgba(12,20,40,0.2);transform:translateX(110%);transition:transform .4s cubic-bezier(.77,0,.175,1);z-index:60;overflow:hidden;}
+.drawer.open{transform:translateX(0);}
+.drawer header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #eef4ff;}
+.drawer .items{max-height:440px;overflow:auto;padding:12px;}
+.drawer .item{display:flex;gap:10px;padding:8px 4px;align-items:center;animation:fadeUp .4s;}
+.drawer .item img{width:60px;height:60px;object-fit:cover;border-radius:8px;}
+.qty{display:inline-flex;gap:6px;align-items:center;background:#f1f6ff;padding:4px;border-radius:8px;}
+.muted{color:var(--muted);font-size:13px;}
+
+@media (max-width:900px){.hero{grid-template-columns:1fr;} .features{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:520px){.features{grid-template-columns:1fr;} header{flex-direction:column;align-items:flex-start;} .logo{font-size:18px;} }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <header>
+    <div class="logo" >Mitch Academy-Shop</div>
+    <nav>
+      <a href="#about" class="text-blue-700">About</a>
+      <a href="#features">Features</a>
+      <a href="#shop">Shop</a>
+      <a href="#contact">Contact</a>
+      <button id="openCart" class="btn cart-btn">Cart <span id="cartCount" class="cart-count">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <h1>All your health tools in one place</h1>
+        <p class="lead">Nutrition plans, training sessions, and progress tracking — stay consistent and reach your goals.</p>
+        <a class="cta" href="#shop">Get started</a>
+
+        <div id="features" class="features">
+          <div class="feature"><strong>Weekly Plans</strong><div class="muted">New meal and workout plans every week.</div></div>
+          <div class="feature"><strong>Macro Calculator</strong><div class="muted">Personalized macro targets integrated with plans.</div></div>
+          <div class="feature"><strong>Progress Tracking</strong><div class="muted">Track weight, photos, and habits.</div></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="hero-card">
+          <h3>Join the community</h3>
+          <p class="muted">Weekly Q&A, live sessions, and supportive members.</p>
+          <a class="cta" href="#contact">Join now</a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="shop" class="shop">
+      <h2 style="margin:0 0 10px">Shop</h2>
+      <div class="grid" id="productsGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> HealthySteps. All rights reserved.</div>
+  </footer>
+</div>
+
+<!-- Drawer -->
+<aside id="cartDrawer" class="drawer">
+  <header>
+    <strong>Cart</strong>
+    <div>
+      <button id="clearCart" class="btn" style="background:#f25c5c">Clear</button>
+      <button id="closeCart" class="btn" style="background:#ddd;color:#111">Close</button>
+    </div>
+  </header>
+  <div class="items" id="cartItems"></div>
+  <div style="padding:12px;border-top:1px solid #eef4ff;display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <div class="muted">Total</div>
+      <div id="cartTotal" style="font-weight:800">$0.00</div>
+    </div>
+    <button id="checkoutBtn" class="btn">Checkout</button>
+  </div>
+</aside>
+
+<script>
+// === Product data ===
+const PRODUCTS = [
+  {id:"ebook-1",title:"Balanced Meals Guide",price:14.99,img:"https://picsum.photos/seed/meal1/600/400"},
+  {id:"ebook-2",title:"Quick Meal Prep eBook",price:12.99,img:"https://picsum.photos/seed/meal2/600/400"},
+  {id:"tee-1",title:"Everyday Tee",price:29.00,img:"https://picsum.photos/seed/tee1/600/400"},
+  {id:"coach-1",title:"Mini Coaching Session",price:49.00,img:"https://picsum.photos/seed/coach/600/400"}
+];
+const $=s=>document.querySelector(s);
+
+// === Render products with fade animation ===
+const grid=$("#productsGrid");
+function renderProducts(){
+  PRODUCTS.forEach((p,i)=>{
+    const el=document.createElement("div");
+    el.className="product";
+    el.style.animationDelay=`${0.2*i}s`;
+    el.innerHTML=`
+      <img src="${p.img}" alt="${p.title}">
+      <h4>${p.title}</h4>
+      <div class="muted">Digital download</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <div class="price">$${p.price.toFixed(2)}</div>
+        <button class="btn add" data-id="${p.id}">Add</button>
+      </div>`;
+    grid.appendChild(el);
+  });
+}
+
+// === Cart system ===
+const CART_KEY="cart_v2";
+function getCart(){return JSON.parse(localStorage.getItem(CART_KEY)||"{}")}
+function saveCart(c){localStorage.setItem(CART_KEY,JSON.stringify(c));updateCartUI()}
+function addToCart(id){const c=getCart();c[id]=(c[id]||0)+1;saveCart(c)}
+function removeItem(id){const c=getCart();delete c[id];saveCart(c)}
+function clearCart(){localStorage.removeItem(CART_KEY);updateCartUI()}
+function setQty(id,q){const c=getCart();if(q<=0)delete c[id];else c[id]=q;saveCart(c)}
+
+// === UI ===
+const cartBtn=$("#openCart"),drawer=$("#cartDrawer"),cartItems=$("#cartItems"),cartTotal=$("#cartTotal"),cartCount=$("#cartCount");
+function updateCartUI(){
+  const c=getCart();cartItems.innerHTML="";let total=0,count=0;
+  for(const [id,q] of Object.entries(c)){
+    const p=PRODUCTS.find(x=>x.id===id);if(!p)continue;
+    const item=document.createElement("div");item.className="item";
+    item.innerHTML=`
+      <img src="${p.img}">
+      <div style="flex:1">
+        <strong>${p.title}</strong>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+          <div class="qty">
+            <button data-act="dec" data-id="${id}">-</button>
+            <div>${q}</div>
+            <button data-act="inc" data-id="${id}">+</button>
+          </div>
+          <div>$${(p.price*q).toFixed(2)}</div>
+        </div>
+        <button data-act="rm" data-id="${id}" class="muted" style="background:none;border:none;margin-top:4px;cursor:pointer">Remove</button>
+      </div>`;
+    cartItems.appendChild(item);
+    total+=p.price*q;count+=q;
+  }
+  cartTotal.textContent=`$${total.toFixed(2)}`;cartCount.textContent=count;
+  if(count===0)cartItems.innerHTML='<div class="muted">Cart is empty</div>';
+}
+function openDrawer(){drawer.classList.add("open")}
+function closeDrawer(){drawer.classList.remove("open")}
+
+document.addEventListener("click",e=>{
+  const t=e.target;
+  if(t.classList.contains("add")) addToCart(t.dataset.id);
+  if(t===cartBtn) openDrawer();
+  if(t.id==="closeCart") closeDrawer();
+  if(t.id==="clearCart") clearCart();
+  if(t.dataset.act==="inc") setQty(t.dataset.id,(getCart()[t.dataset.id]||0)+1);
+  if(t.dataset.act==="dec") setQty(t.dataset.id,(getCart()[t.dataset.id]||0)-1);
+  if(t.dataset.act==="rm") removeItem(t.dataset.id);
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer()});
+$("#checkoutBtn").onclick=()=>alert("Checkout demo — connect payment gateway here.");
+
+renderProducts();updateCartUI();
+$("#year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
