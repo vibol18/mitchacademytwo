@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: linear-gradient(180deg, #f8f9ff, #ffffff);
+    }
+
+    /* Smooth Scroll Animation */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body class="text-gray-800">
+  <!-- Navbar -->
+  <header class="bg-white/70 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center py-3">
+      <h1 class="text-xl font-bold text-indigo-600">Portfolia</h1>
+      <nav class="space-x-6 hidden md:block">
+        <a href="#" class="hover:text-indigo-600 transition">Designers</a>
+        <a href="#" class="hover:text-indigo-600 transition">Explore</a>
+        <a href="https://vibol18.github.io/mitchacademytwo/" class="hover:text-indigo-600 transition">Projects</a>
+        <a href="#" class="hover:text-indigo-600 transition">Work</a>
+      </nav>
+      <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">Upload</button>
+    </div>
+  </header>
+
+  <!-- Profile Section -->
+  <section class="max-w-6xl mx-auto px-4 mt-12 flex flex-col md:flex-row items-center gap-8" data-aos="fade-up">
+    <img src="/IMG_9467.JPG"
+         class="w-32 h-32 rounded-2xl shadow-lg object-cover" alt="">
+    <div>
+      <h2 class="text-3xl font-semibold">Chhorn Vibol <span class="bg-indigo-100 text-indigo-600 text-sm px-2 py-0.5 rounded-lg ml-2">PRO +</span></h2>
+      <p class="text-gray-500 mt-1">Teacher on Mitch Academy</p>
+
+      <div class="flex gap-3 mt-4">
+        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">Follow</button>
+        <button class="border border-gray-300 px-4 py-2 rounded-lg hover:bg-gray-100 transition">Get in touch</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="max-w-6xl mx-auto px-4 mt-10 flex justify-around text-center" data-aos="fade-up" data-aos-delay="200">
+    <div>
+      <h3 class="text-2xl font-bold">2,985</h3>
+      <p class="text-gray-500 text-sm">Followers</p>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold">132</h3>
+      <p class="text-gray-500 text-sm">Following</p>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold">548</h3>
+      <p class="text-gray-500 text-sm">Likes</p>
+    </div>
+  </section>
+
+  <!-- Tabs -->
+  <section class="max-w-6xl mx-auto mt-10 border-b flex justify-start px-4 space-x-6 text-gray-600 font-medium" data-aos="fade-up" data-aos-delay="400">
+    <a href="#" class="border-b-2 border-indigo-600 pb-2 text-indigo-600">Work</a>
+    <a href="#" class="hover:text-indigo-600 pb-2">Moodboards</a>
+    <a href="#" class="hover:text-indigo-600 pb-2">Likes</a>
+    <a href="#" class="hover:text-indigo-600 pb-2">About</a>
+  </section>
+
+  <!-- Projects -->
+  <section class="max-w-6xl mx-auto px-4 mt-8 grid md:grid-cols-3 gap-6">
+    <!-- Project 1 -->
+    <div class="bg-white rounded-2xl shadow hover:shadow-xl transition transform hover:-translate-y-2 p-4" data-aos="fade-up">
+      <img src="https://cdn.dribbble.com/userupload/16037054/file/original-9a7f6a5832511844eb6bb23193e35a0e.png" class="rounded-xl mb-3" alt="">
+      <h3 class="font-semibold">Web design</h3>
+      <p class="text-gray-500 text-sm">Html,css,Javaxcript,Boosrap,tailwind</p>
+   
+    </div>
+
+    <!-- Project 2 -->
+    <div class="bg-white rounded-2xl shadow hover:shadow-xl transition transform hover:-translate-y-2 p-4" data-aos="fade-up" data-aos-delay="150">
+      <img src="https://cdn.dribbble.com/userupload/17116781/file/original-b7a4c0939433be9b1a34c9ad6f7cb64e.png" class="rounded-xl mb-3" alt="">
+      <h3 class="font-semibold">Web Backend</h3>
+      <p class="text-gray-500 text-sm">Php,Ajax,Laravel</p>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="bg-white rounded-2xl shadow hover:shadow-xl transition transform hover:-translate-y-2 p-4" data-aos="fade-up" data-aos-delay="300">
+      <img src="https://cdn.dribbble.com/userupload/16827602/file/original-7ab93bfb5e8071e313d1e8c01f3a8f30.png" class="rounded-xl mb-3" alt="">
+      <h3 class="font-semibold">Web Database</h3>
+      <p class="text-gray-500 text-sm">Mysql,MongoDb</p>
+    </div>
+
+     <div class="bg-white rounded-2xl shadow hover:shadow-xl transition transform hover:-translate-y-2 p-4" data-aos="fade-up">
+      <img src="https://cdn.dribbble.com/userupload/16037054/file/original-9a7f6a5832511844eb6bb23193e35a0e.png" class="rounded-xl mb-3" alt="">
+      <h3 class="font-semibold">Framework</h3>
+      <p class="text-gray-500 text-sm">React,Vue</p>
+   
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center mt-16 mb-6 text-gray-400 text-sm">
+    © 2025 ETEC Design Portfolio. All rights reserved.
+  </footer>
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  </script>
+</body>
+</html>
 
